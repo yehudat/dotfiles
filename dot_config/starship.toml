@@ -46,6 +46,7 @@ fg          = "#1c1c1c"   # dark text on pastel blocks
 dim         = "#444444"   # subtle separators
 
 # git status
+success_fg    = "#00F651"   # emerald green
 conflict_fg   = "#C11414"   # deep crimson
 untracked_fg  = "#F75C03"   # electric orange
 stashed_fg    = "#0A4FFF"   # royal blue
@@ -144,8 +145,8 @@ style = "bold red"
 # --------------------------------------------------------------
 
 [character]
-success_symbol = "[](fg:green)[^_^](bold fg:fg bg:green)[](fg:green)"
-error_symbol   = "[](fg:red)[X_X](bold fg:fg bg:red)[](fg:red)"
+success_symbol = "[](fg:success_fg)[^_^](bold fg:fg bg:success_fg)[](fg:success_fg)"
+error_symbol   = "[](fg:conflict_fg)[X_X](bold fg:fg bg:conflict_fg)[](fg:conflict_fg)"
 vimcmd_symbol  = "[](fg:gainsboro)[-N-](bg:gainsboro fg:fg)[](fg:gainsboro)"
 vimcmd_visual_symbol = "[](fg:dir_bg)[-V-]bg:dir_bg fg:fg)[](fg:dir_bg)"
 
