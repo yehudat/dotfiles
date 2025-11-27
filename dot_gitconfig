@@ -1,0 +1,24 @@
+[user]
+	name = Yehuda Tsimanis
+	email = yehuda.tsimanis@gmail.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[submodule]
+    recurse = true
+[fetch]
+    recurseSubmodules = on-demand
+[pull]
+    recurseSubmodules = on-demand
+[status]
+    submoduleSummary = true
+[diff]
+    submodule = log
+[alias]
+	su = submodule update --init --recursive
+	ci = commit
+	st = status
+	logo = log --oneline --graph --decorate --date=short --abbrev-commit
