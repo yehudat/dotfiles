@@ -12,7 +12,7 @@ palette = "airline"
 # LEFT PROMPT: segments with powerline separators
 # [ user@host ] [ cwd ] [ git ]  ⏎  [^_^] or [X_X]
 format = """
-$character$username$hostname$directory$git_branch$git_status$docker_context
+$character$username[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[ ](fg:git_bg)
 """
 
 # Right prompt: timing + status
@@ -28,11 +28,12 @@ gainsboro   = "#DCDCDC"
 # Main blocks
 user_bg     = "#A7C7E7"   # pastel baby blue
 mustard     = "#E8C875"
-orange      = "#FFA500"
+chick       = "#F7F5A0"
+orange      = "#FFA590"
 dir_bg      = "#D6C6E1"   # soft lilac
-git_bg      = "#E0B0FF"
+git_bg      = "#E0B0DF"
 docker_bg   = "#F4C2C2"   # baby pink
-time_bg     = "#C8F3CF"   # mint pastel
+time_bg     = "#C8D3CF"   # mint pastel
 dur_bg      = "#FFF2A1"   # pastel sunshine yellow
 
 # Functional
@@ -57,14 +58,9 @@ deleted_fg    = "#E00032"   # scarlet red
 # Host / user / directory
 # --------------------------------------------------------------
 
-[hostname]
-ssh_only = true
-format = "[$hostname](bold fg:fg bg:dur_bg)[](fg:dur_bg)"
-disabled = false
-
 [username]
 show_always = true
-format = "[](fg:blue)[$user](bold fg:fg bg:blue)[](fg:blue bg:orange)"
+format = "[](fg:chick)[$user](bold fg:fg bg:chick)"
 
 [directory]
 truncation_length = 3          # ~/proj/ai/…
@@ -91,7 +87,7 @@ deleted    = "[󰧧](fg:deleted_fg bg:git_bg)"
 ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-format = "[$all_status$ahead_behind](bold fg:fg bg:git_bg)[](fg:git_bg)"
+format = "[$all_status$ahead_behind](bold fg:fg bg:git_bg)"
 
 # --------------------------------------------------------------
 # Languages / environments
@@ -99,15 +95,19 @@ format = "[$all_status$ahead_behind](bold fg:fg bg:git_bg)[](fg:git_bg)"
 
 [python]
 symbol = ""
-style = "yellow"
+style = "chick"
 pyenv_version_name = true
 format = "[${symbol}${version}]($style)"
 
 [docker_context]
 symbol = "󰡨"
-style = "bold blue bg:warn_bg"
 only_with_files = false
-format = "[$symbol$context]($style)"
+format = "[ $symbol $context ](bold fg:stashed_fg bg:blue)"
+
+[hostname]
+ssh_only = true
+format = "[$hostname](bold fg:fg bg:time_bg)"
+disabled = false
 
 # --------------------------------------------------------------
 # Time / duration / status / battery
