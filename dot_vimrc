@@ -239,10 +239,6 @@ if &diff
     colorscheme morning
     syntax off
 
-    if has("gui_running")
-        set guifont=JetBrainsNFM:h14
-    endif
-
     " Window size and shapeo
     set lines=90
     set columns=300
@@ -270,10 +266,6 @@ else
         colorscheme PaperColor
     else
         colorscheme slate
-    endif
-
-    if has("gui_running")
-        set guifont=JetBrainsNFM:h14
     endif
 
     "Hidden characters :set list/nolist for showing/hiding the hidden characters
