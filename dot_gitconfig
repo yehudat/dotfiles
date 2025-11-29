@@ -13,6 +13,7 @@
     recurseSubmodules = on-demand
 [pull]
     recurseSubmodules = on-demand
+	ff = only
 [status]
     submoduleSummary = true
 [diff]
