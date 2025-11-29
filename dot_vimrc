@@ -1,57 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" HELP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"""""""""""""""""""""
-" HOW TO FOLD CODE?
-"""""""""""""""""""""
-" zm to fold more
-" zr to fold less
-" zc to close a fold
-" zo to open it
-" za to toggle between those two states
-" zM to close every fold
-" zR to open them
-
-"""""""""""""""""""""
-" HOW TO SCROLL CODE?
-"""""""""""""""""""""
-" Move a line to the top/bottom of the screen: zt/zb
-" Move half screen forward/back:             : <C-u>/<C-d>
-
-"""""""""""""""""""""
-" HOW TO ACCESS REGS?
-"""""""""""""""""""""
-" Print all the registers and its content:
-"     Command mode: :reg
-" Access a reg
-"     Normal mode: press "<reg-key>
-"     Insert mode: press <C-r> <reg-key>
-" Example:
-"     Copy a line to reg '2'          : (in Normal Mode)  "2yy
-"     Copy an entire buffer to reg '+': (in Normal Mode)  gg"+yG
-"     Copy an entire buffer to reg 'c': (in Command Mode) :%y c
-
-"""""""""""""""""""""
-" HOW TO MANAGE WINDOWS?
-"""""""""""""""""""""
-" <C-w>s : horisontal split
-" <C-w>v : vertical   split
-
-"""""""""""""""""""""
-" VIM native indentations tools
-"""""""""""""""""""""
-" gg=G    indent all the lines in a file
-" =i{     indent inside a block that starts with '{'
-
-"""""""""""""""""""""
-" VIM native marks
-" [A-Z] global makrs
-" [a-z] local file marks
-" y'<mark_letter> copy from a cursor to a mark
-" d'<mark_letter> delete from a cursor to a mark
-"""""""""""""""""""""
-
 "Enable UTF-8 special characters for 'list'/hidden characters feature
 scriptencoding utf-8
 set encoding=utf-8
@@ -398,5 +344,58 @@ nnoremap <Leader>t :retab
 " http://vim.wikia.com/wiki/Fix_indentation
 " http://vim.wikia.com/wiki/Indenting_source_code
 map <M-i> mzgg=G`z
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" HELP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"""""""""""""""""""""
+" HOW TO FOLD CODE?
+"""""""""""""""""""""
+" zm to fold more
+" zr to fold less
+" zc to close a fold
+" zo to open it
+" za to toggle between those two states
+" zM to close every fold
+" zR to open them
+
+"""""""""""""""""""""
+" HOW TO SCROLL CODE?
+"""""""""""""""""""""
+" Move a line to the top/bottom of the screen: zt/zb
+" Move half screen forward/back:             : <C-u>/<C-d>
+
+"""""""""""""""""""""
+" HOW TO ACCESS REGS?
+"""""""""""""""""""""
+" Print all the registers and its content:
+"     Command mode: :reg
+" Access a reg
+"     Normal mode: press "<reg-key>
+"     Insert mode: press <C-r> <reg-key>
+" Example:
+"     Copy a line to reg '2'          : (in Normal Mode)  "2yy
+"     Copy an entire buffer to reg '+': (in Normal Mode)  gg"+yG
+"     Copy an entire buffer to reg 'c': (in Command Mode) :%y c
+
+"""""""""""""""""""""
+" HOW TO MANAGE WINDOWS?
+"""""""""""""""""""""
+" <C-w>s : horisontal split
+" <C-w>v : vertical   split
+
+"""""""""""""""""""""
+" VIM native indentations tools
+"""""""""""""""""""""
+" gg=G    indent all the lines in a file
+" =i{     indent inside a block that starts with '{'
+
+"""""""""""""""""""""
+" VIM native marks
+" [A-Z] global makrs
+" [a-z] local file marks
+" y'<mark_letter> copy from a cursor to a mark
+" d'<mark_letter> delete from a cursor to a mark
+"""""""""""""""""""""
 
