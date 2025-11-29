@@ -126,7 +126,8 @@ if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 fi
 
 ##### Aliases (from your bashrc, kept) #####
-alias ls="eza --oneline --reverse --sort=size --group-directories-first"
+alias ls="eza --oneline --reverse --sort=size --group-directories-first --icons --color=auto"
+alias ll="ls -ll"
 alias l="less"
 alias t="tree -L 2"
 alias grepc="grep --colour"
