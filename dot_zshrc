@@ -138,7 +138,7 @@ alias vpnu='sudo wg-quick up aifabrics_vpn.conf'
 alias vpnd='sudo wg-quick down aifabrics_vpn.conf'
 alias vpns='sudo wg show'
 alias bbdump='brew bundle dump --global --force'
-
+alias sued='sudo EDITOR=/usr/bin/vi visudo'
 
 ##### Local overrides #####
 if [ -f "$HOME/.zshrc.local" ]; then
