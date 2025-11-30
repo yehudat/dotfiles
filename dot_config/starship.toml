@@ -79,12 +79,12 @@ format = "[ $symbol $branch ](bold fg:fg bg:git_bg)"
 
 [git_status]
 conflicted = "[](fg:conflict_fg bg:git_bg)"
-untracked  = "[](fg:untracked_fg bg:git_bg)"
-stashed    = "[󰆺](fg:stashed_fg bg:git_bg)"
-modified   = "[](fg:modified_fg bg:git_bg)"
-staged     = "[](fg:staged_fg bg:git_bg)"
+untracked  = "[?](fg:untracked_fg bg:git_bg)"
+stashed    = "[](fg:stashed_fg bg:git_bg)"
+modified   = "[](bold fg:red bg:git_bg)"
+staged     = "[](bold fg:staged_fg bg:git_bg)"
 renamed    = "[➜](fg:renamed_fg bg:git_bg)"
-deleted    = "[󰧧](fg:deleted_fg bg:git_bg)"
+deleted    = "[x](fg:deleted_fg bg:git_bg)"
 ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
@@ -127,7 +127,7 @@ format = "[${duration}](dimmed)"
 disabled = false
 format = "[E$status](bold red)"
 map_symbol = true             # use common symbols
-pipestatus = false
+pipestatus = true
 
 [battery]
 disabled = true
