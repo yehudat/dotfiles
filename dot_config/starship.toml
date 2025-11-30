@@ -125,7 +125,7 @@ format = "[${duration}](dimmed)"
 
 [status]
 disabled = false
-format = "[✖ $status](bold red)"
+format = "[E$status](bold red)"
 map_symbol = true             # use common symbols
 pipestatus = false
 
