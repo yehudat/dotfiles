@@ -128,9 +128,8 @@ fi
 alias ls="eza --oneline --reverse --sort=size --group-directories-first --icons --color=auto"
 alias ll="ls -ll"
 alias l="less"
-alias t="tree -L 2"
-alias grepc="grep --colour"
-alias md_viewer="retext"
+alias grep="grep --colour"
+alias openmd="retext"
 alias cclip='tr -d "\n" | xclip -selection clipboard'
 alias pclip='xclip -selection clipboard -o'
 alias docker_ps="docker ps -a --format '{{.ID}} | {{.Image}} | {{.Status}}' | awk '{ printf \"%20s %20s %20s %10s\\n\", \$1, \$2, \$3, \$4 }'"
