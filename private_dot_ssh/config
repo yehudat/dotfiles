@@ -1,0 +1,12 @@
+Host 10.0.*
+    HostName 10.0.0.51
+    User yehudat 
+
+Host aifdev
+    HostName aifdev
+    User yehudat
+
+Host aifpasswd
+    HostName 10.0.0.51
+    User yehudat
+
