@@ -114,6 +114,8 @@ fi
 ##### Aliases (from your bashrc, kept) #####
 alias ls="eza --oneline --reverse --sort=size --group-directories-first --icons --color=auto"
 alias ll="ls -ll"
+alias lt="ls -tree"
+alias lt="ls -a"
 alias l="less"
 alias grep="grep --colour"
 alias openmd="retext"
