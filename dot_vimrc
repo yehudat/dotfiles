@@ -81,7 +81,7 @@ filetype plugin indent on
     "      Y    file encoding[fileformat] (utf-8[unix])
     "      Z    current position in the file
     "  [...]    additional sections (warning/errors/statistics) from external plugins (e.g. YCM, syntastic, ...)
-    let g:airline_theme='solarized'
+    let g:airline_theme='onedark'
     let g:airline_solarized_bg='dark'
     let g:airline_section_z = '%p%% Ln:%l/Cn:%v'
     let g:airline#extensions#tabline#enabled = 1              "Tabline confuguration
