@@ -37,10 +37,6 @@ bindkey -v   # vim-style keys
 
 ##### Git helpers for prompt #####
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | cut -c1-15 | sed 's/$/.../'
-}
-
 git_stash_count() {
   if git rev-parse --is-inside-work-tree &>/dev/null; then
     local count
@@ -50,16 +46,6 @@ git_stash_count() {
     fi
   fi
 }
-
-##### Prompt #####
-# Success ⇒ [^_^] (green), failure ⇒ [X_X] (red)
-
-PROMPT="%(?.%F{green}[^_^]%f.%F{red}[X_X]%f)\
-%F{blue}[%n]%f\
-%F{magenta}[%D{%H:%M}]%f \
-%F{white}%1~%f \
-%F{yellow}($(parse_git_branch))%f\
-%F{red}$(git_stash_count)%f \$ "
 
 ##### Colour variables for highlighting #####
 
