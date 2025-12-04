@@ -1,0 +1,51 @@
+# ============================
+# Chezmoi configuration (TOML)
+# ============================
+
+# Where chezmoi places generated dotfiles
+sourceDir = "~/.local/share/chezmoi"
+
+# Enable data.tmpl for templates if needed
+[data]
+  os = "linux"
+  shell = "zsh"
+
+# ----------------------------
+# Target definitions
+# ----------------------------
+
+# Main Zsh configuration
+[targets."~/.zshrc"]
+  type = "file"
+  tags = ["zsh"]
+
+# Optional zprofile
+[targets."~/.zprofile"]
+  type = "file"
+  tags = ["zsh"]
+
+# Zsh plugin directories (adjust paths if needed)
+[targets."~/.config/zsh"]
+  type = "directory"
+  recursive = true
+  tags = ["zsh"]
+
+[targets."~/.zsh"]
+  type = "directory"
+  recursive = true
+  tags = ["zsh"]
+
+# Starship prompt config
+[targets."~/.config/starship.toml"]
+  type = "file"
+  tags = ["zsh", "starship"]
+
+# ==============================
+# Default behaviour inside Linux
+# ==============================
+[linux]
+  # By default, do NOT apply everything.
+  # The Dockerfile should explicitly run: chezmoi apply --include-tag zsh
+  # This prevents unwanted files (SSH keys, Git config, ...) from leaking in.
+  include = []
+  exclude = ["*"]   # everything excluded unless explicitly tagged
