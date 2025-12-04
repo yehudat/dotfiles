@@ -123,8 +123,8 @@ alias cclip='tr -d "\n" | xclip -selection clipboard'
 alias pclip='xclip -selection clipboard -o'
 alias docker_ps="docker ps -a --format '{{.ID}} | {{.Image}} | {{.Status}}' | awk '{ printf \"%20s %20s %20s %10s\\n\", \$1, \$2, \$3, \$4 }'"
 alias h=highlight
-alias vpnu='sudo wg-quick up aifabrics_vpn.conf'
-alias vpnd='sudo wg-quick down aifabrics_vpn.conf'
+alias vpnu='sudo wg-quick up   ai-fabrics-yt'
+alias vpnd='sudo wg-quick down ai-fabrics-yt'
 alias vpns='sudo wg show'
 alias bbdump='brew bundle dump --global --force'
 alias sued='sudo EDITOR=/usr/bin/vi visudo'
