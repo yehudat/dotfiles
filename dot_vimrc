@@ -82,7 +82,6 @@ filetype plugin indent on
     "      Z    current position in the file
     "  [...]    additional sections (warning/errors/statistics) from external plugins (e.g. YCM, syntastic, ...)
     let g:airline_theme='onedark'
-    let g:airline_solarized_bg='dark'
     let g:airline_section_z = '%p%% Ln:%l/Cn:%v'
     let g:airline#extensions#tabline#enabled = 1              "Tabline confuguration
     let g:airline#extensions#tabline#fnamemod = ':t'          "clean filename
@@ -213,22 +212,19 @@ syntax enable
 " 5. Colors and diff/GUI setup
 "----------------------------------------------------------------
 " Use different settings for diff mode vs regular editing
+colorscheme PaperColor
+set lines=90
+set columns=300
+
 if &diff
     syntax off
-    set lines=90
-    set columns=300
-    colorscheme morning
     highlight DiffAdd    gui=none guifg=NONE    guibg=#bada9f
     highlight DiffChange gui=none guifg=NONE    guibg=#e5d5ac
     highlight DiffDelete gui=bold guifg=#ff8080 guibg=#ffb0b0
     highlight DiffText   gui=none guifg=NONE    guibg=#8cbee2
 else
-    set lines=90
-    set columns=220
     set foldmethod=syntax
     set nofoldenable
-    set background=dark
-    colorscheme PaperColor
     highlight NonText ctermfg=239 guifg=gray25
     set listchars=tab:▸\ ,nbsp:␣,trail:·,eol:¶,precedes:«,extends:»
     nnoremap <Leader>hc :set list!<CR>
