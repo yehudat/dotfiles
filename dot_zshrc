@@ -16,6 +16,7 @@ fi
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/bin"
 
+export ICLOUD='/Users/lab-s-yehudat/Library/Mobile Documents/com~apple~CloudDocs'
 ##### History & options #####
 
 HISTSIZE=50000
