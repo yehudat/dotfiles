@@ -297,6 +297,15 @@ nnoremap <Leader>ft :retab<CR>
 " Reindent entire file using the current indentation settings
 map <M-i> mzgg=G`z
 
+" Restore cursor to last known position when opening a file
+augroup restore_cursor
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \ execute "normal! g`\"" |
+    \ endif
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " HELP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
