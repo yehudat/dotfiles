@@ -20,6 +20,9 @@
     submodule = log
 [alias]
 	su = submodule update --init --recursive
+    br = branch
+    co = checkout
 	ci = commit
 	st = status
+    re = restore
 	logo = log --oneline --graph --decorate --date=short --abbrev-commit
