@@ -93,24 +93,6 @@ highlight() {
 autoload -Uz compinit
 compinit
 
-# --- fzf integration (if installed via Homebrew) ---
-if [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]; then
-  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-fi
-if [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]; then
-  source /opt/homebrew/opt/fzf/shell/completion.zsh
-fi
-
-# --- zsh-autosuggestions ---
-if [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-# --- zsh-syntax-highlighting (MUST be last) ---
-if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
 ##### Aliases (from your bashrc, kept) #####
 alias ls="eza --oneline --reverse --sort=size --group-directories-first --icons --color=auto"
 alias ll="ls -ll"
@@ -136,8 +118,27 @@ if [ -f "$HOME/.zshrc.local" ]; then
 fi
 
 # --------------------------------------------------------------
-# Starship prompt
+# Plugins: fzf, autosuggestions, syntax-highlighting #####
 # --------------------------------------------------------------
+
+# --- fzf integration (if installed via Homebrew) ---
+if [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]; then
+  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+fi
+if [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]; then
+  source /opt/homebrew/opt/fzf/shell/completion.zsh
+fi
+
+# --- zsh-autosuggestions ---
+if [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# --- zsh-syntax-highlighting (MUST be last) ---
+if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
