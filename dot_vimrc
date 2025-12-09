@@ -226,7 +226,6 @@ syntax enable
 " Use different settings for diff mode vs regular editing
 colorscheme PaperColor
 set lines=90
-set columns=300
 
 if &diff
     syntax off
@@ -281,6 +280,9 @@ autocmd InsertLeave * update
 " Toggle diff options to ignore whitespace and case
 nnoremap <Leader>iw :set diffopt+=iwhite<CR>
 nnoremap <Leader>ic :set diffopt+=icase<CR>
+nnoremap dp :diffput 2<CR>
+nnoremap dg :diffget 1<CR>
+nnoremap dl :diffget 3<CR>
 
 " Change working directory to the one of the current file
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
