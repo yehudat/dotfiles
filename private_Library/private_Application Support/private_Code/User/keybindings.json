@@ -15,11 +15,12 @@
     { "key": "ctrl+shift+i", "command": "workbench.panel.output.focus", "when": "panelVisible" },
     { "key": "ctrl+shift+o", "command": "workbench.action.debug.nextConsole", "when": "panelVisible" },
     { "key": "ctrl+shift+f", "command": "workbench.panel.testResults.view.focus", "when": "panelVisible" },
-    {
-        "key": "ctrl+[",
-        "command": "notebook.diff.action.next",
-        "when": "activeEditor == 'workbench.editor.notebookTextDiffEditor'"
-    },
+    { "key": "ctrl+shift+e", "command": "-cursorLineEndSelect", "when": "textInputFocus" },
+    { "key": "ctrl+shift+e", "command": "workbench.explorer.fileView.toggleVisibility" },
+    { "key": "ctrl+shift+x", "command": "workbench.views.extensions.marketplace.toggleVisibility" },
+    { "key": "ctrl+shift+c", "command": "workbench.panel.chat.view.copilot.toggleVisibility" }
+
+    { "key": "ctrl+[", "command": "notebook.diff.action.next", "when": "activeEditor == 'workbench.editor.notebookTextDiffEditor'" },
     { "key": "ctrl+]", "command": "notebook.diff.action.previous", "when": "activeEditor == 'workbench.editor.notebookTextDiffEditor'" },
     { "key": "ctrl+[", "command": "editor.action.dirtydiff.next", "when": "editorTextFocus && !textCompareEditorActive" },
     { "key": "ctrl+]", "command": "editor.action.dirtydiff.previous", "when": "editorTextFocus && !textCompareEditorActive" },
@@ -419,25 +420,5 @@
     { "key": "ctrl+shift+i", "command": "-editor.action.formatDocument.none", "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly" },
     { "key": "ctrl+shift+i", "command": "-editor.action.formatDocument", "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor" },
     { "key": "ctrl+shift+=", "command": "-workbench.action.zoomIn" },
-    {
-        "key": "insert",
-        "command": "-editor.action.toggleOvertypeInsertMode"
-    },
-    {
-        "key": "ctrl+shift+e",
-        "command": "-cursorLineEndSelect",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "ctrl+shift+e",
-        "command": "workbench.explorer.fileView.toggleVisibility"
-    },
-    {
-        "key": "ctrl+shift+x",
-        "command": "workbench.views.extensions.marketplace.toggleVisibility"
-    },
-    {
-        "key": "ctrl+shift+c",
-        "command": "workbench.panel.chat.view.copilot.toggleVisibility"
-    },
+    { "key": "insert", "command": "-editor.action.toggleOvertypeInsertMode" }
 ]
