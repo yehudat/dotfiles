@@ -289,10 +289,10 @@ nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 noremap <Leader>fp :let @* = expand("%:p")<CR>
 
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
+noremap <Leader>mw mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
 
 " Retab the current buffer (convert tabs to spaces based on settings)
-nnoremap <Leader>t :retab<CR>
+nnoremap <Leader>ft :retab<CR>
 
 " Reindent entire file using the current indentation settings
 map <M-i> mzgg=G`z
