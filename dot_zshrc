@@ -114,8 +114,8 @@ fi
 ##### Aliases (from your bashrc, kept) #####
 alias ls="eza --oneline --reverse --sort=size --group-directories-first --icons --color=auto"
 alias ll="ls -ll"
-alias lt="ls -tree"
-alias lt="ls -a"
+alias lt="ls --tree"
+alias la="ls -a"
 alias l="less"
 alias grep="grep --colour"
 alias openmd="retext"
@@ -128,6 +128,7 @@ alias vpnd='sudo wg-quick down ai-fabrics-yt'
 alias vpns='sudo wg show'
 alias bbdump='brew bundle dump --global --force'
 alias sued='sudo EDITOR=/usr/bin/vi visudo'
+alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfont="JetBrainsMono Nerd Font" --variable monofont="JetBrainsMono Nerd Font Mono" --variable fontsize=12pt --variable geometry:margin=0.5cm --syntax-highlighting=tango'
 
 ##### Local overrides #####
 if [ -f "$HOME/.zshrc.local" ]; then
