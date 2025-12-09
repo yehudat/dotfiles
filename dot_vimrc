@@ -61,6 +61,9 @@ call vundle#begin()
     Plugin 'preservim/nerdtree'
     Plugin 'Xuyuanp/nerdtree-git-plugin'
     Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plugin 'vim-test/vim-test'
+    Plugin 'tpope/vim-dispatch'
+    Plugin 'github/copilot.vim'
 call vundle#end()
 
 " Enable filetype detection and plugin/indent support
