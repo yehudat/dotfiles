@@ -3,12 +3,11 @@
     // GENERAL shortcuts
     ////////////////////////////////
     // remap caps_lock to escape in editor
-    { "key": "capslock", "command": "extension.vim_escape", "when": "editorTextFocus" },
     { "key": "ctrl+space", "command": "workbench.action.showCommands" },
- 
+
     // maximise the screen real estate
     { "key": "ctrl+z", "command": "workbench.action.toggleZenMode" },
- 
+
     // panel shortcuts
     { "key": "ctrl+shift+j", "command": "workbench.action.togglePanel" },
     { "key": "ctrl+shift+y", "command": "workbench.action.terminal.focus", "when": "panelVisible" },
@@ -20,7 +19,7 @@
     // Toggle Testing View
     { "key": "ctrl+shift+=", "command": "workbench.view.testing.focus" },
     { "key": "ctrl+shift+=", "command": "workbench.action.toggleSidebarVisibility", "when": "sideBarFocus && sideBarVisible" },
- 
+
     // scrolling in terminal
     { "key": "ctrl+shift+alt+j", "command": "workbench.action.terminal.scrollDownPage", "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive" },
     { "key": "ctrl+shift+alt+k", "command": "workbench.action.terminal.scrollUpPage", "when": "terminalFocusInAny && terminalHasBeenCreated && !terminalAltBufferActive || terminalFocusInAny && terminalProcessSupported && !terminalAltBufferActive" },
@@ -43,7 +42,7 @@
     // Unittesting
     { "key": "ctrl+shift+y", "command": "testing.runAll", "when": "sideBarFocus && sideBarVisible && workbench.view.testing.visible" },
     { "key": "ctrl+shift+u", "command": "testing.runAtCursor", "when": "!inDebugMode && editorTextFocus && !panelVisible" },
- 
+
     // Debugging Shortcuts
     { "key": "ctrl+shift+y", "command": "workbench.action.debug.start", "when": "!inDebugMode && view == debug" },
     { "key": "ctrl+shift+y", "command": "workbench.action.debug.continue", "when": "inDebugMode" },
@@ -52,10 +51,11 @@
     { "key": "ctrl+shift+o", "command": "workbench.action.debug.stepOut", "when": "inDebugMode" },
     { "key": "ctrl+shift+p", "command": "workbench.action.debug.restart", "when": "inDebugMode" },
     { "key": "ctrl+shift+t", "command": "workbench.action.debug.stop", "when": "inDebugMode" },
- 
+
     // complitions
     { "key": "ctrl+l", "command": "editor.action.inlineSuggest.acceptNextWord", "when": "inlineSuggestionVisible && !editorReadonly" },
     { "key": "ctrl+l", "command": "editor.action.accessibleViewAcceptInlineCompletion", "when": "accessibleViewIsShown && accessibleViewCurrentProviderId == 'inlineCompletions'" },
+
     // windows nav
     { "key": "ctrl+w q", "command": "workbench.action.closeActiveEditor" },
     { "key": "ctrl+w =", "command": "workbench.action.evenEditorWidths", "when": "editorTextFocus && vim.active && vim.mode == 'Normal'" },
@@ -71,13 +71,13 @@
     { "key": "alt+h", "command": "workbench.action.increaseViewSize",    "when": "editorFocus || sideBarFocus" },
     { "key": "alt+j", "command": "workbench.action.decreaseViewSize",    "when": "panelFocus || terminalFocus" },
     { "key": "alt+k", "command": "workbench.action.increaseViewSize",    "when": "panelFocus || terminalFocus" },
- 
+
     //find of all types
     { "key": "/", "command": "list.find", "when": "listFocus && listSupportsFind" },
     { "key": "/", "command": "settings.action.search", "when": "inSettingsEditor" },
     { "key": "/", "command": "editor.action.extensioneditor.showfind", "when": "!editorFocus && activeEditor == 'workbench.editor.extension'" },
     { "key": "/", "command": "keybindings.editor.searchKeybindings", "when": "inKeybindings" },
- 
+
     // General Dropdowns
     { "key": "ctrl+j", "command": "list.focusDown", "when": "listFocus" },
     { "key": "ctrl+k", "command": "list.focusUp", "when": "listFocus" },
@@ -376,17 +376,7 @@
     { "key": "alt+c", "command": "-markdown.extension.checkTaskList", "when": "editorTextFocus && editorLangId =~ /^markdown$|^rmd$|^quarto$/" },
     { "key": "ctrl+alt+=", "command": "-editor.action.inlineEdit.jumpTo", "when": "inlineEditVisible && !cursorAtInlineEdit && !editorReadonly" },
     { "key": "ctrl+alt+=", "command": "-editor.action.inlineEdit.jumpBack", "when": "cursorAtInlineEdit && !editorReadonly" },
-    {
-        "key": "ctrl+]",
-        "command": "workbench.action.editor.nextChange",
-        "when": "editorTextFocus && !textCompareEditorActive"
-    },
     { "key": "alt+f5", "command": "-workbench.action.editor.nextChange", "when": "editorTextFocus && !textCompareEditorActive" },
-    {
-        "key": "ctrl+[",
-        "command": "workbench.action.editor.previousChange",
-        "when": "editorTextFocus && !textCompareEditorActive"
-    },
     { "key": "shift+alt+f5", "command": "-workbench.action.editor.previousChange", "when": "editorTextFocus && !textCompareEditorActive" },
     { "key": "alt+f8", "command": "-editor.action.marker.next", "when": "editorFocus" },
     { "key": "shift+alt+f8", "command": "-editor.action.marker.prev", "when": "editorFocus" },
