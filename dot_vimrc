@@ -198,6 +198,15 @@ filetype plugin indent on
     nnoremap <Leader>il :IndentLinesToggle<CR>
     highlight Conceal ctermfg=239 ctermbg=NONE guifg=Grey35 guibg=NONE
 
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "IndentLine
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    nmap <silent> <Leader>tn :TestNearest<CR>
+    nmap <silent> <Leader>tf :TestFile<CR>
+    nmap <silent> <Leader>ts :TestSuite<CR>
+    nmap <silent> <Leader>tl :TestLast<CR>
+    nmap <silent> <Leader>tv :TestVisit<CR>
+
 "================================================================
 " 4. User interface and search settings
 "----------------------------------------------------------------
