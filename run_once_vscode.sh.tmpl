@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# VS Code user settings location depends on OS
+{{ if eq .chezmoi.os "darwin" }}
+VSCODE_DIR="$HOME/Library/Application Support/Code/User"
+{{ else if eq .chezmoi.os "linux" }}
+VSCODE_DIR="$HOME/.config/Code/User"
+{{ end }}
+
+mkdir -p "$VSCODE_DIR"
+
+# Copy or symlink your canonical file
+ln -sf "$HOME/.vscode/settings.json" "$VSCODE_DIR/settings.json"
+ln -sf "$HOME/.vscode/keybindings.json" "$VSCODE_DIR/keybindings.json"
+
