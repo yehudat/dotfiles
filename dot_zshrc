@@ -88,8 +88,6 @@ highlight() {
     -e "s/\bINFO\b/${H_CYAN}&${H_RESET}/Ig"
 }
 
-##### Plugins: fzf, autosuggestions, syntax-highlighting #####
-
 autoload -Uz compinit
 compinit
 
