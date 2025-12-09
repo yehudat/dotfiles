@@ -12,7 +12,7 @@ palette = "airline"
 # LEFT PROMPT: segments with powerline separators
 # [ user@host ] [ cwd ] [ git ]  ⏎  [^_^] or [X_X]
 format = """
-$character$username[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[ ](fg:git_bg)
+$username[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)\n$character
 """
 
 # Right prompt: timing + status
