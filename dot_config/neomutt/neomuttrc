@@ -1,0 +1,106 @@
+# --- Maildir root ---
+set mbox_type=Maildir
+set folder="~/.mail/gmail"
+set spoolfile="=INBOX"
+
+# --- Caches (optional but fine) ---
+set header_cache="~/.cache/neomutt/headers"
+set message_cachedir="~/.cache/neomutt/bodies"
+
+# --- Identity (set these properly) ---
+set from="yehudat@ai-fabrics.com"
+set realname="Yehuda Tsimanis"
+set use_from=yes
+
+# --- Sorting / UI ---
+set sort=threads
+set sort_aux=last-date-received
+set pager_index_lines=10
+set editor="vim"
+set pager="less -R"
+
+# --- Sidebar (mailbox tree) ---
+set sidebar_visible=no
+set sidebar_width=30
+set sidebar_format="%B%?F? [%F]?%* %?N?%N/?"
+set sidebar_short_path=yes
+set sidebar_divider_char="│"
+set sidebar_indent_string="  "
+
+# --- Sending (msmtp) ---
+set sendmail="/opt/homebrew/bin/msmtp"
+#set use_from=yes
+
+# --- Prefer plain text, do NOT auto-view HTML ---
+alternative_order text/plain text/enriched text/html
+
+# --- Where to save sent mail / drafts locally (choose folders you actually sync) ---
+# If you do NOT sync [Gmail]/Sent Mail / Drafts, keep these in a local folder you do sync.
+set record="=repository"
+set postponed="=tasks"
+
+set move=no
+set mark_old=yes
+
+# --- Mailboxes list (macOS-safe; explicit is simplest) ---
+mailboxes "=INBOX" "=repository" "=tasks"
+
+# ============================================================================
+# Vim-like keys (with prefix unbound first to avoid alias warnings)
+# ============================================================================
+bind index,pager g noop
+bind index,pager : noop
+#
+# Use <space> as leader prefix
+bind index,pager <space> noop
+
+# Navigation
+unbind index j
+unbind index j
+bind   index j next-entry
+unbind index k
+bind   index k previous-entry
+bind index J next-thread
+bind index K previous-thread
+bind index za collapse-thread
+bind index zM collapse-all
+bind pager q exit
+
+# gg / G (index only for "last-entry"; pager doesn't have that function)
+bind index gg first-entry
+bind index G  last-entry
+bind pager gg top
+bind pager G  bottom
+
+# Half page scroll
+bind pager <C-d> half-down
+bind pager <C-u> half-up
+bind index <C-d> half-down
+bind index <C-u> half-up
+
+# Search: / n N
+bind index,pager / search
+bind index,pager n search-next
+bind index,pager N search-opposite
+
+# Common actions
+bind index,pager r reply
+bind index,pager R group-reply
+bind index,pager f forward-message
+bind index,pager s save-message
+bind index,pager d delete-message
+bind index,pager u undelete-message
+
+# Command-ish macros
+macro index,pager :q "<quit>\n" "Quit"
+macro index,pager :w "<sync-mailbox>\n" "Sync mailbox"
+macro index,pager :x "<exit>\n" "Exit"
+
+# Toggle threads quickly
+macro index T "<toggle-threads>\n" "Toggle threads"
+
+# Mailbox switching
+macro index,pager gi "<change-folder>=INBOX\n"      "Go INBOX"
+macro index,pager gr "<change-folder>=repository\n" "Go repository"
+macro index,pager gt "<change-folder>=tasks\n"      "Go tasks"
+

@@ -1,0 +1,22 @@
+IMAPAccount gmail
+Host imap.gmail.com
+Port 993
+User yehudat@ai-fabrics.com
+PassCmd "security find-generic-password -s neomutt-gmail -w"
+SSLType IMAPS
+CertificateFile /etc/ssl/cert.pem
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/INBOX
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns *
+Create Near
+SyncState *
+
