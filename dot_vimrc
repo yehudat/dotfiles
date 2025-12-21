@@ -17,12 +17,10 @@ let mapleader = " "
 set nocompatible " be iMproved, required
 filetype off     " required
 
-if has('gui_running')
-    "Removes windows to pop-up and removes the RHS scroll bar
-    set guioptions+=lrbmTLce
-    set guioptions-=lrbmTLce
-    set guioptions+=c
-endif
+"Removes windows to pop-up and removes the RHS scroll bar
+set guioptions+=lrbmTLce
+set guioptions-=lrbmTLce
+set guioptions+=c
 
 " Include Vundle itself in the runtime path
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -63,11 +61,11 @@ call vundle#begin()
     Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plugin 'vim-test/vim-test'
     Plugin 'tpope/vim-dispatch'
+    Plugin 'tmhedberg/SimpylFold'
     Plugin 'github/copilot.vim'
+    Plugin 'sheerun/vim-polyglot'
+    Plugin 'will133/vim-dirdiff'             " :DirDiff <path1> <path2>
 call vundle#end()
-
-" Enable filetype detection and plugin/indent support
-filetype plugin indent on
 
 "================================================================
 " 3. Plugin configuration
@@ -207,18 +205,40 @@ filetype plugin indent on
     nmap <silent> <Leader>tl :TestLast<CR>
     nmap <silent> <Leader>tv :TestVisit<CR>
 
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "SimpyFold
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let g:simpyfold_enable_markdown = 1
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Claude.vim
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let g:claude_api_key = 'your_api_key_here'
+    let g:claude_map_implement = "<Leader>ai"
+    let g:claude_map_open_chat = "<Leader>ac"
+    let g:claude_map_send_chat_message = "<Leader>ae"
+    let g:claude_map_cancel_response   = "<Leader>ax"
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "vim-polyglot
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let g:vim_markdown_conceal = 0
+    let g:vim_markdown_conceal_code_blocks = 0
 "================================================================
 " 4. User interface and search settings
 "----------------------------------------------------------------
+" Enable filetype detection and plugin/indent support
+syntax on
+filetype plugin indent on
+
 set backspace=indent,eol,start   " backspace works on everything
-set number                        " line numbers
+set number                       " line numbers
 set ignorecase                   " case‑insensitive search by default
 set smartcase                    " but become case‑sensitive if pattern has uppercase
 set incsearch                    " show matches while typing
 set hlsearch                     " highlight search results
 set showmatch                    " highlight matching brackets
 set mat=2                        " blink time for showmatch (tenths of a second)
-syntax enable
 
 "================================================================
 " 5. Colors and diff/GUI setup
@@ -235,7 +255,8 @@ if &diff
     highlight DiffText   gui=none guifg=NONE    guibg=#8cbee2
 else
     set foldmethod=syntax
-    set nofoldenable
+    set foldenable
+    set foldlevel=99
     highlight NonText ctermfg=239 guifg=gray25
     set listchars=tab:▸\ ,nbsp:␣,trail:·,eol:¶,precedes:«,extends:»
     nnoremap <Leader>hc :set list!<CR>
@@ -260,6 +281,7 @@ set si                          " smart indentation
 set nocin                       " disable C indentation
 set nowrap                      " don't wrap long lines by default
 set textwidth=0                 " allow unlimited line length
+"set colorcolumn=100
 
 " Backup and swap settings
 set wb                          " keep a backup file while overwriting
@@ -280,7 +302,6 @@ autocmd InsertLeave * update
 " Toggle diff options to ignore whitespace and case
 nnoremap <Leader>iw :set diffopt+=iwhite<CR>
 nnoremap <Leader>ic :set diffopt+=icase<CR>
-nnoremap dp :diffput 2<CR>
 nnoremap dg :diffget 1<CR>
 nnoremap dl :diffget 3<CR>
 
