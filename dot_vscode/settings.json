@@ -288,7 +288,7 @@
     // "editorInfo.foreground": "#292247"
 
     "errorLens.fontSize": "12",
-    "errorLens.fontStyleItalic": true
+    "errorLens.fontStyleItalic": true,
     "errorLens.gutterIconsEnabled": true,
     "errorLens.gutterEmoji": {
         "error": "\u274C", // X
