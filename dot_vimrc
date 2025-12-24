@@ -65,6 +65,7 @@ call vundle#begin()
     Plugin 'github/copilot.vim'
     Plugin 'sheerun/vim-polyglot'
     Plugin 'will133/vim-dirdiff'             " :DirDiff <path1> <path2>
+    Plugin 'christoomey/vim-tmux-navigator'  " Seamless C-h/j/k/l between vim splits and tmux panes
 call vundle#end()
 
 "================================================================
