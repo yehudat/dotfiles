@@ -154,3 +154,8 @@ _clear_before_exec() {
   print -n $'\e[2J\e[H'
 }
 add-zsh-hook preexec _clear_before_exec
+
+tp() {
+  local name="${1:-$(basename $(git rev-parse --show-toplevel 2>/dev/null || pwd))}"
+  tmux attach -t "$name" 2>/dev/null || tmux new -s "$name"
+}
