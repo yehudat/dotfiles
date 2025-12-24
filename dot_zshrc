@@ -2,9 +2,10 @@
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export KEYTIMEOUT=1
 
-export EDITOR='vim'
-export VISUAL='mvim'
+export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/vim
 
 # Common PATH bits (Mac + Linux)
 if [ -d /opt/homebrew/bin ]; then
@@ -12,9 +13,6 @@ if [ -d /opt/homebrew/bin ]; then
 elif [ -d /usr/local/bin ]; then
   export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 fi
-
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:$HOME/bin"
 
 export ICLOUD='/Users/lab-s-yehudat/Library/Mobile Documents/com~apple~CloudDocs'
 ##### History & options #####
@@ -97,8 +95,8 @@ alias ll="ls -ll"
 alias l="less"
 alias grep="grep --colour"
 alias openmd="retext"
-alias cclip='tr -d "\n" | xclip -selection clipboard'
-alias pclip='xclip -selection clipboard -o'
+alias cclip='tr -d "\n" | pbclip -selection clipboard'
+alias pclip='pbpaste -selection clipboard -o'
 alias docker_ps="docker ps -a --format '{{.ID}} | {{.Image}} | {{.Status}}' | awk '{ printf \"%20s %20s %20s %10s\\n\", \$1, \$2, \$3, \$4 }'"
 alias h=highlight
 alias vpnu='sudo wg-quick up   ai-fabrics-yt'
@@ -106,8 +104,9 @@ alias vpnd='sudo wg-quick down ai-fabrics-yt'
 alias vpns='sudo wg show'
 alias bbdump='brew bundle dump --global --force'
 alias sued='sudo EDITOR=/usr/bin/vi visudo'
-alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfont="JetBrainsMono Nerd Font" --variable monofont="JetBrainsMono Nerd Font Mono" --variable fontsize=12pt --variable geometry:margin=0.5cm --syntax-highlighting=tango'
+alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfont="JetBrainsMono Nerd Font" --variable monofont="JetBrainsMono Nerd Font Mono" --variable geometry:margin=0.5cm --syntax-highlighting=tango'
 alias nw="networksetup -listallnetworkservices"
+alias speedtest="networkquality -s"
 
 ##### Local overrides #####
 if [ -f "$HOME/.zshrc.local" ]; then
@@ -143,3 +142,15 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/lab-s-yehudat/.docker/completions $fpath)
+# End of Docker CLI completions
+
+autoload -Uz add-zsh-hook
+
+_clear_before_exec() {
+  # Clear screen (works in your terminal, you already confirmed this escape works)
+  print -n $'\e[2J\e[H'
+}
+add-zsh-hook preexec _clear_before_exec
