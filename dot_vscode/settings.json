@@ -54,7 +54,7 @@
     "diffEditor.experimental.showMoves": true,
     "editor.minimap.enabled": false,
     "editor.fontFamily": "'DejaVuSansMono Nerd Font', 'Book'",
-    "editor.fontSize": 12,
+    "editor.fontSize": 20,
     "editor.formatOnSave": false,
     "editor.suggest.insertMode": "replace",
     "editor.linkedEditing": true,

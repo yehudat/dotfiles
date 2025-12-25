@@ -2,8 +2,9 @@ IMAPAccount gmail
 Host imap.gmail.com
 Port 993
 User yehudat@ai-fabrics.com
-PassCmd "security find-generic-password -s neomutt-gmail -w"
-SSLType IMAPS
+AuthMechs LOGIN
+PassCmd "security find-generic-password -s neomutt-gmail -w | tr -d '\n'"
+TLSType IMAPS
 CertificateFile /etc/ssl/cert.pem
 
 IMAPStore gmail-remote
@@ -12,11 +13,15 @@ Account gmail
 MaildirStore gmail-local
 Path ~/.mail/gmail/
 Inbox ~/.mail/gmail/INBOX
+SubFolders Verbatim
 
 Channel gmail
 Far :gmail-remote:
 Near :gmail-local:
-Patterns *
+Patterns INBOX repository tasks repository/* tasks/* !"[Gmail]/All Mail" !"[Gmail]/Spam" !"[Gmail]/Trash" !"[Gmail]/Important"
+MaxSize 10m
 Create Near
 SyncState *
+Sync Pull
+Expunge None
 

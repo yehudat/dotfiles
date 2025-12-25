@@ -24,6 +24,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --src)
             SRC="$BASE_DIR/$2"
+            DST_PATH="$DST_PATH/$(basename "$2")"
             shift 2
             ;;
         --)

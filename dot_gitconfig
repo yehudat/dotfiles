@@ -3,6 +3,7 @@
 	email = yehuda.tsimanis@gmail.com
 [core]
 	editor = vim
+	excludesfile = /Users/lab-s-yehudat/.gitignore_global
 [init]
 	defaultBranch = main
 [color]
@@ -18,6 +19,7 @@
     submoduleSummary = true
 [diff]
     submodule = log
+    tool = gvimdiff
 [alias]
 	su = submodule update --init --recursive
     br = branch

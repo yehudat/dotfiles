@@ -18,6 +18,7 @@ set sort_aux=last-date-received
 set pager_index_lines=10
 set editor="vim"
 set pager="less -R"
+set timeout=500
 
 # --- Sidebar (mailbox tree) ---
 set sidebar_visible=no
@@ -50,21 +51,25 @@ mailboxes "=INBOX" "=repository" "=tasks"
 # ============================================================================
 bind index,pager g noop
 bind index,pager : noop
-#
-# Use <space> as leader prefix
-bind index,pager <space> noop
 
+# Restore paging since Space is now a prefix
+bind index,pager <C-f> next-page
+bind index,pager <C-b> previous-page
 # Navigation
 unbind index j
 unbind index j
-bind   index j next-entry
 unbind index k
-bind   index k previous-entry
-bind index J next-thread
-bind index K previous-thread
+bind index j next-entry
+bind index k previous-entry
 bind index za collapse-thread
 bind index zM collapse-all
 bind pager q exit
+
+# Vim-style sidebar navigation (works because sidebar lives in index/pager)
+bind index,pager J sidebar-next
+bind index,pager K sidebar-prev
+bind index,pager L sidebar-open
+bind index,pager H sidebar-toggle-visible
 
 # gg / G (index only for "last-entry"; pager doesn't have that function)
 bind index gg first-entry
@@ -95,9 +100,6 @@ bind index,pager u undelete-message
 macro index,pager :q "<quit>\n" "Quit"
 macro index,pager :w "<sync-mailbox>\n" "Sync mailbox"
 macro index,pager :x "<exit>\n" "Exit"
-
-# Toggle threads quickly
-macro index T "<toggle-threads>\n" "Toggle threads"
 
 # Mailbox switching
 macro index,pager gi "<change-folder>=INBOX\n"      "Go INBOX"

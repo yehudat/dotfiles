@@ -12,13 +12,12 @@ palette = "airline"
 # LEFT PROMPT: segments with powerline separators
 # [ user@host ] [ cwd ] [ git ]  ⏎  [^_^] or [X_X]
 format = """
-$username[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)\n$character
+$username[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
+ └─$character
 """
 
-# Right prompt: timing + status
-right_format = """
-$time$cmd_duration$status
-"""
+# Right prompt
+right_format = ""
 
 [palettes.airline]
 bg          = "#1c1c1c"   # terminal background blending
@@ -47,11 +46,11 @@ dim         = "#444444"   # subtle separators
 
 # git status
 success_fg    = "#00F651"   # emerald green
-conflict_fg   = "#C11414"   # deep crimson
-untracked_fg  = "#F75C03"   # electric orange
+conflict_fg   = "#7A0C0C"   # blood red
+untracked_fg  = "#8B0000"   # blood red
 stashed_fg    = "#0A4FFF"   # royal blue
 staged_fg     = "#00A651"   # emerald green
-modified_fg   = "#5A0FC8"   # imperial purple
+modified_fg   = "#8B0000"   # dark crimson
 renamed_fg    = "#7B3F00"   # chocolate brown
 deleted_fg    = "#E00032"   # scarlet red
 
@@ -61,34 +60,37 @@ deleted_fg    = "#E00032"   # scarlet red
 
 [username]
 show_always = true
-format = "[](fg:chick)[$user](bold fg:fg bg:chick)"
+format = "[](fg:chick)[ $user](bold fg:fg bg:chick)"
 
 [directory]
 truncation_length = 3          # ~/proj/ai/…
 truncate_to_repo = true        # stop at repo root
 read_only = ""
-format = "[$path](bold fg:fg bg:orange)[](fg:orange bg:git_bg)"
+format = "[  $path](bold fg:fg bg:orange)[](fg:orange bg:git_bg)"
 
 # --------------------------------------------------------------
 # Git
 # --------------------------------------------------------------
 
 [git_branch]
-symbol = ""
+symbol = "󰊢"
+
+truncation_length = 15
+truncation_symbol = "…"
 format = "[ $symbol $branch ](bold fg:fg bg:git_bg)"
 
 [git_status]
-conflicted = "[](fg:conflict_fg bg:git_bg)"
-untracked  = "[?](fg:untracked_fg bg:git_bg)"
-stashed    = "[](fg:stashed_fg bg:git_bg)"
-modified   = "[](bold fg:red bg:git_bg)"
-staged     = "[](bold fg:staged_fg bg:git_bg)"
-renamed    = "[➜](fg:renamed_fg bg:git_bg)"
-deleted    = "[x](fg:deleted_fg bg:git_bg)"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-format = "[$all_status$ahead_behind](bold fg:fg bg:git_bg)"
+conflicted = "[ $count ](fg:conflict_fg bg:git_bg)"
+untracked  = "[ $count ](fg:untracked_fg bg:git_bg)"
+stashed    = "[ $count ](fg:stashed_fg bg:git_bg)"
+modified   = "[ $count ](bold fg:modified_fg bg:git_bg)"
+staged     = "[ $count ](bold fg:staged_fg bg:git_bg)"
+renamed    = "[󰜴 $count ](fg:renamed_fg bg:git_bg)"
+deleted    = "[ $count ](fg:deleted_fg bg:git_bg)"
+ahead      = " ${count}"
+behind     = " ${count}"
+diverged   = " ${ahead_count}⇣${behind_count}"
+format     = "[$all_status$ahead_behind](bold fg:fg bg:git_bg)"
 
 # --------------------------------------------------------------
 # Languages / environments
@@ -101,7 +103,7 @@ pyenv_version_name = true
 format = "[${symbol}${version}]($style)"
 
 [docker_context]
-symbol = "󰡨"
+symbol = "󰡨 "
 only_with_files = false
 format = "[ $symbol $context ](bold fg:stashed_fg bg:blue)"
 
@@ -116,12 +118,13 @@ disabled = false
 
 [time]
 disabled = false
-format = "[$time](dimmed)"
+format = "[󰥔 $time](dimmed)"
 time_format = "%H:%M"
 
 [cmd_duration]
+disabled = false
 min_time = 500                # ms; only show if > 0.5s
-format = "[${duration}](dimmed)"
+format = "[󱦟${duration}](dimmed)"
 
 [status]
 disabled = false
@@ -145,8 +148,9 @@ style = "bold red"
 # --------------------------------------------------------------
 
 [character]
-success_symbol = "[](fg:success_fg)[^_^](bold fg:fg bg:success_fg)[](fg:success_fg)"
-error_symbol   = "[](fg:conflict_fg)[X_X](bold fg:fg bg:conflict_fg)[](fg:conflict_fg)"
-vimcmd_symbol  = "[](fg:gainsboro)[-N-](bg:gainsboro fg:fg)[](fg:gainsboro)"
-vimcmd_visual_symbol = "[](fg:dir_bg)[-V-]bg:dir_bg fg:fg)[](fg:dir_bg)"
+disabled       = false
+success_symbol = "[](fg:staged_fg)[INSERT](bg:staged_fg fg:fg)[](fg:staged_fg)"
+error_symbol   = "[](fg:red)[INSERT](bg:red fg:white)[](fg:red)"
+vimcmd_symbol  = "[](fg:gainsboro)[NORMAL](bg:gainsboro fg:fg)[](fg:gainsboro)"
+vimcmd_visual_symbol = "[](fg:dir_bg)[VISUAL]bg:dir_bg fg:fg)[](fg:dir_bg)"
 
