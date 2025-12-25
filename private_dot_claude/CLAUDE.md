@@ -1,0 +1,1 @@
+- always make atomic commits according to the plan you set yourself. It can be number of files, only, if a step is relevant for all of them.
