@@ -10,8 +10,20 @@ brew "eza"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
+# Render markdown on the CLI
+brew "glow"
+# Synchronize a maildir with an IMAP server
+brew "isync", restart_service: :changed
 # Library to render SVG files using Cairo
 brew "librsvg"
+# SMTP client that can be used as an SMTP plugin for Mutt
+brew "msmtp"
+# NCurses Disk Usage
+brew "ncdu"
+# E-mail reader with support for Notmuch, NNTP and much more
+brew "neomutt"
+# Simple CLI for interacting with Google oauth tokens
+brew "oauth2l"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -20,6 +32,8 @@ brew "poppler"
 brew "ripgrep"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Waveform viewer, supporting VCD, FST, or GHW format
+brew "surfer"
 # High-performance, platform-neutral implementation of VNC
 brew "tiger-vnc"
 # Terminal multiplexer
@@ -32,6 +46,8 @@ brew "wireguard-tools"
 brew "zoxide"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # App to build and share containerised applications and microservices
@@ -45,5 +61,7 @@ cask "itermai"
 cask "joplin"
 # Text editor
 cask "macvim-app"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
 # Multi-platform VNC client and server
 cask "tigervnc-viewer"
