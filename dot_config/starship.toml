@@ -148,9 +148,9 @@ style = "bold red"
 # --------------------------------------------------------------
 
 [character]
-disabled       = false
-success_symbol = "[](fg:staged_fg)[INSERT](bg:staged_fg fg:fg)[](fg:staged_fg)"
-error_symbol   = "[](fg:red)[INSERT](bg:red fg:white)[](fg:red)"
-vimcmd_symbol  = "[](fg:gainsboro)[NORMAL](bg:gainsboro fg:fg)[](fg:gainsboro)"
-vimcmd_visual_symbol = "[](fg:dir_bg)[VISUAL]bg:dir_bg fg:fg)[](fg:dir_bg)"
+disabled             = false
+success_symbol       = "[](fg:staged_fg)"
+error_symbol         = "[](fg:red)"
+vimcmd_symbol        = "[󰝆](fg:gainsboro)"
+vimcmd_visual_symbol = "[](fg:dir_bg)"
 
