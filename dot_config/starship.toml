@@ -13,7 +13,7 @@ palette = "airline"
 # [ user@host ] [ cwd ] [ git ]  ⏎  [^_^] or [X_X]
 format = """
 $username[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
- └─$character
+$character
 """
 
 # Right prompt
@@ -149,8 +149,8 @@ style = "bold red"
 
 [character]
 disabled             = false
-success_symbol       = "[](fg:staged_fg)"
-error_symbol         = "[](fg:red)"
-vimcmd_symbol        = "[󰝆](fg:gainsboro)"
-vimcmd_visual_symbol = "[](fg:dir_bg)"
+success_symbol       = "[ └─ ](fg:staged_fg)"
+error_symbol         = "[ └─ ](fg:red)"
+vimcmd_symbol        = "[ └─ 󰝆](fg:gainsboro)"
+vimcmd_visual_symbol = "[ └─ ](fg:dir_bg)"
 
