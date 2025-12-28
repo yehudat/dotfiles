@@ -15,6 +15,18 @@ let mapleader = " "
 "   settings below. Vundle must be installed at ~/.vim/bundle/Vundle.vim.
 "----------------------------------------------------------------
 set nocompatible " be iMproved, required
+
+" VNC + xfce4-terminal: disable extended key protocols (prevents ESC[>4;…m garbage)
+if exists('&keyprotocol')
+  set keyprotocol=
+endif
+
+" Disable xterm/kitty keyboard protocol leakage
+set ttimeout
+set ttimeoutlen=50
+
+" Explicitly disable modifyOtherKeys / extended keys
+set term=xterm-256color
 filetype off     " required
 
 "Removes windows to pop-up and removes the RHS scroll bar
@@ -203,7 +215,7 @@ call vundle#end()
     highlight Conceal ctermfg=239 ctermbg=NONE guifg=Grey35 guibg=NONE
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "IndentLine
+    "vim-test
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     nmap <silent> <Leader>tn :TestNearest<CR>
     nmap <silent> <Leader>tf :TestFile<CR>
@@ -230,6 +242,12 @@ call vundle#end()
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     let g:vim_markdown_conceal = 0
     let g:vim_markdown_conceal_code_blocks = 0
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "vim-dirdiff
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let g:DiffDirExcludes=".git"
+
 "================================================================
 " 4. User interface and search settings
 "----------------------------------------------------------------
@@ -250,8 +268,9 @@ set mat=2                        " blink time for showmatch (tenths of a second)
 " 5. Colors and diff/GUI setup
 "----------------------------------------------------------------
 " Use different settings for diff mode vs regular editing
+set t_Co=256
+set background=dark
 colorscheme PaperColor
-set lines=90
 
 if &diff
     syntax off
