@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 # .bashrc
 
 # Source global definitions
@@ -33,3 +34,4 @@ bind -f ~/.inputrc
 
 # Source custom functions
 [ -f ~/.bash_functions ] && source ~/.bash_functions
+{{- end -}}
