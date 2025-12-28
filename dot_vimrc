@@ -41,7 +41,6 @@ call vundle#begin()
     " Code navigation and editing helpers
     Plugin 'vim-scripts/matchit.zip'
     Plugin 'vimtaku/hl_matchit.vim'          " extends the existing functionality of % key
-    Plugin 'nachumk/systemverilog.vim'
     Plugin 'vim-scripts/mru.vim'             " :MRU
     Plugin 'vim-scripts/ctags.vim'           " exuberant tags
     Plugin 'elzr/vim-json'                   " https://github.com/elzr/vim-json
