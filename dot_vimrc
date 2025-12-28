@@ -271,10 +271,10 @@ endif
 "================================================================
 " 6. Indentation, whitespace and history
 "----------------------------------------------------------------
-set softtabstop=4   " fine-tunes the amount of white-space to be inserted
-set tabstop    =4   " specifies the width of a tab character (how many white-spaces are in a tab)
-set shiftwidth =4   " determines the amount of white-spaces to insert/remove by using indentation commands in normal mode
-set expandtab       " causes white-spaces of equivalent width to inserted instead of tab characters. Switch expandtab to noexpandtab to use tabs
+" ------------------------------------------------------------
+" Global policies
+" ------------------------------------------------------------
+source ~/.vim/policy/indentation.vim
 
 set history=200                 " command‑line history length
 set ruler                       " show cursor position in the status line
