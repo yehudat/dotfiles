@@ -1,0 +1,38 @@
+# Caches and temp files
+.cache/
+.ccache/
+.npm/
+.nvm/
+.zcompdump
+
+# History files (machine-specific)
+.bash_history
+.zsh_history
+.lesshst
+.viminfo
+.vim_mru_files
+.verdi_onesearch_history.log
+
+# Session/auth files (machine-specific)
+.Xauthority
+.ICEauthority
+.esd_auth
+
+# Sensitive directories (should NOT be in git)
+.ssh/
+.gnupg/
+.vnc/
+.config/tigervnc/passwd
+
+# Application state/data
+.local/
+.mozilla/
+.vscode/
+.verdi/
+.xdg/
+
+# Tool-specific temp files
+.flexllm0x6d
+
+# Backup files
+.claude.json.backup
