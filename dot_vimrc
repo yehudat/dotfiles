@@ -269,29 +269,28 @@ else
 endif
 
 "================================================================
-" 6. Indentation, whitespace and history
+" 6. Global Indentation, Whitespace
 "----------------------------------------------------------------
 " ------------------------------------------------------------
 " Global policies
 " ------------------------------------------------------------
 source ~/.vim/policy/indentation.vim
 
-set history=200                 " command‑line history length
-set ruler                       " show cursor position in the status line
-set showcmd                     " show (partially) typed command in status line
-set vb                          " use visual bell instead of beeping
-set sta                         " show incomplete commands (status of last search)
-set et                          " use spaces when <Tab> is pressed (redundant with expandtab)
-set ai                          " automatic indentation
-set si                          " smart indentation
-set nocin                       " disable C indentation
-set nowrap                      " don't wrap long lines by default
-set textwidth=0                 " allow unlimited line length
-"set colorcolumn=100
+set history=200     " command‑line history length
+set ruler           " show cursor position in the status line
+set showcmd         " show (partially) typed command in status line
+set vb              " use visual bell instead of beeping
+set sta             " show incomplete commands (status of last search)
+set et              " use spaces when <Tab> is pressed (redundant with expandtab)
+set ai              " automatic indentation
+set si              " smart indentation
+set nocin           " disable C indentation
+set nowrap          " don't wrap long lines by default
+set textwidth=0     " allow unlimited line length
 
 " Backup and swap settings
-set wb                          " keep a backup file while overwriting
-set nosol                       " don't set shortmess options aggressively
+set wb              " keep a backup file while overwriting
+set nosol           " don't set shortmess options aggressively
 set nobackup
 set noswapfile
 
