@@ -9,14 +9,15 @@
 add_newline = true
 palette = "airline"
 
-# LEFT PROMPT: segments with powerline separators
-# [ user@host ] [ cwd ] [ git ]  ⏎  [^_^] or [X_X]
+# LEFT PROMPT: [ user ] [ host ] [ cwd ] [ git ]
+#                └─ [  ] or [ 󰝆 ]
+# RIGHT PROMPT: ......[ time ] [ cmd_duration_sec ]
 format = """
 ${custom.user}[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
 $character
 """
 
-# Right prompt
+# Right prompt Not Used
 right_format = ""
 
 [palettes.airline]
@@ -79,7 +80,7 @@ format = "[  $path](bold fg:fg bg:orange)[](fg:orange bg:git_bg)"
 [git_branch]
 symbol = "󰊢"
 
-truncation_length = 15
+truncation_length = 10
 truncation_symbol = "…"
 format = "[ $symbol $branch ](bold fg:fg bg:git_bg)"
 
