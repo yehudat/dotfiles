@@ -27,11 +27,15 @@ alias svcsr='./simv && fsdb2fst'
 
 export NOVAS_RC=~/.verdi/novas.rc
 
-set -o vi
-
-# Load readline configuration
-bind -f ~/.inputrc
-
 # Source custom functions
 [ -f ~/.bash_functions ] && source ~/.bash_functions
+
+# Ensure readline settings are applied in all interactive shells
+case $- in
+  *i*)
+    bind -f ~/.inputrc >/dev/null 2>&1
+    bind 'set show-mode-in-prompt on' >/dev/null 2>&1
+    ;;
+esac
+
 {{- end }}
