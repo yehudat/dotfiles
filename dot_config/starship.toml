@@ -12,7 +12,7 @@ palette = "airline"
 # LEFT PROMPT: segments with powerline separators
 # [ user@host ] [ cwd ] [ git ]  ⏎  [^_^] or [X_X]
 format = """
-$username[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
+${custom.user}[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
 $character
 """
 
@@ -59,8 +59,12 @@ deleted_fg    = "#E00032"   # scarlet red
 # --------------------------------------------------------------
 
 [username]
-show_always = true
-format = "[](fg:chick)[ $user](bold fg:fg bg:chick)"
+disabled = true
+
+[custom.user]
+command = "echo $STARSHIP_USER_ALIAS"
+when = true
+format = "[](fg:chick)[  $output](bold fg:fg bg:chick)"
 
 [directory]
 truncation_length = 3          # ~/proj/ai/…

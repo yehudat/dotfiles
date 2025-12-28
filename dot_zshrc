@@ -7,6 +7,8 @@ export KEYTIMEOUT=1
 export VISUAL=/usr/bin/vim
 export EDITOR=/usr/bin/vim
 
+export STARSHIP_USER_ALIAS=$([[ "$USER" == "lab-s-yehudat" ]] && echo me || echo "$USER")
+
 # Common PATH bits (Mac + Linux)
 if [ -d /opt/homebrew/bin ]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
