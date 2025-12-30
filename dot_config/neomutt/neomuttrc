@@ -1,3 +1,6 @@
+# --- Nord Theme ---
+source ~/.config/neomutt/themes/nord.muttrc
+
 # --- Maildir root ---
 set mbox_type=Maildir
 set folder="~/.mail/gmail"
@@ -13,8 +16,7 @@ set realname="Yehuda Tsimanis"
 set use_from=yes
 
 # --- Sorting / UI ---
-set sort=threads
-set sort_aux=last-date-received
+set sort=reverse-date-received
 set pager_index_lines=10
 set editor="vim"
 set pager="less -R"
