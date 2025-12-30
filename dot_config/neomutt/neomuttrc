@@ -24,7 +24,7 @@ set timeout=500
 
 # --- Sidebar (mailbox tree) ---
 set sidebar_visible=no
-set sidebar_width=30
+set sidebar_width=20
 set sidebar_format="%B%?F? [%F]?%* %?N?%N/?"
 set sidebar_short_path=yes
 set sidebar_divider_char="│"
