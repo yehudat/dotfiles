@@ -15,6 +15,7 @@
 [pull]
     recurseSubmodules = on-demand
 	ff = only
+	rebase = true
 [status]
     submoduleSummary = true
 [diff]
