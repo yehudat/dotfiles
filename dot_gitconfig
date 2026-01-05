@@ -1,6 +1,6 @@
 [user]
-	name = Yehuda Tsimanis
-	email = yehuda.tsimanis@gmail.com
+	name = yehuda
+	email = 50722303+yehudat@users.noreply.github.com
 [core]
 	editor = vim
 	excludesfile = /Users/lab-s-yehudat/.gitignore_global
