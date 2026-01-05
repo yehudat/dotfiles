@@ -29,3 +29,8 @@
 	st = status
     re = restore
 	logo = log --oneline --graph --decorate --date=short --abbrev-commit
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
