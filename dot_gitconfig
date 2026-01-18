@@ -1,6 +1,6 @@
 [user]
 	name = yehuda
-	email = 50722303+yehudat@users.noreply.github.com
+	email = yehuda.tsimanis@gmail.com
 [core]
 	editor = vim
 	excludesfile = /Users/lab-s-yehudat/.gitignore_global
@@ -12,6 +12,7 @@
     recurse = true
 [fetch]
     recurseSubmodules = on-demand
+    prune = true
 [pull]
     recurseSubmodules = on-demand
 	ff = only
@@ -29,6 +30,7 @@
 	st = status
     re = restore
 	logo = log --oneline --graph --decorate --date=short --abbrev-commit
+	cleanup = !git fetch -p && git branch -vv | grep \": gone]\" | awk \"{print \\$1}\" | xargs -r git branch -D
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
