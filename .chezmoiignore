@@ -36,3 +36,6 @@
 
 # Backup files
 .claude.json.backup
+
+# Tmux plugins (managed by tpm)
+.tmux/plugins/
