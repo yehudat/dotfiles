@@ -39,3 +39,4 @@
 
 # Tmux plugins (managed by tpm)
 .tmux/plugins/
+Library/Application Support/Claude/
