@@ -207,6 +207,7 @@ call vundle#end()
     "NERDTree (COMMENTED OUT DUE TO A HIGH PERF PENALTY/USAGE RATIO)
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     nnoremap <Leader>nt :NERDTreeToggle<CR>
+    let NERDTreeShowHidden=1
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "IndentLine
