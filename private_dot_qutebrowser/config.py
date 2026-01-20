@@ -94,13 +94,13 @@ config.bind('<Right>', 'nop')
 # -----------------------------
 config.bind('<Ctrl-[>', 'back')
 config.bind('<Ctrl-]>', 'forward')
-config.bind('<Ctrl+6>', 'undo') # restores last closed tab/window
-config.bind('H', 'nop')
-config.bind('L', 'nop')
-config.bind('J', 'tab-prev')
-config.bind('K', 'tab-next')
-config.bind('Ctrl-Shift-H', 'tab-move -')
-config.bind('Ctrl-Shift-L', 'tab-move +')
+config.bind('<Ctrl-6>', 'undo') # restores last closed tab/window
+config.bind('J', 'nop')
+config.bind('K', 'nop')
+config.bind('H', 'tab-prev')
+config.bind('L', 'tab-next')
+config.bind('<Ctrl-Shift-H>', 'tab-move -')
+config.bind('<Ctrl-Shift-L>', 'tab-move +')
 
 config.bind('<Ctrl-w>', 'nop')
 c.aliases['q'] = 'tab-close'
