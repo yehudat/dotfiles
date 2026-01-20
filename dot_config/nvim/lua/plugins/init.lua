@@ -1,4 +1,17 @@
 return {
+  -- nvim-cmp: override mappings for Ctrl-j/k navigation
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.mapping = vim.tbl_extend("force", opts.mapping or {}, {
+        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      })
+      return opts
+    end,
+  },
+
   -- Treesitter (replaces vim-polyglot, provides better syntax)
   {
     "nvim-treesitter/nvim-treesitter",

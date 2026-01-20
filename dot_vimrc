@@ -173,6 +173,14 @@ call vundle#end()
     nmap <M-t> :TagbarToggle<CR>
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Completion menu navigation (Ctrl-j/k)
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+    inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+    cnoremap <C-j> <C-n>
+    cnoremap <C-k> <C-p>
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "CtrlP
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "<C-j/k> up/down the list
@@ -208,6 +216,7 @@ call vundle#end()
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     nnoremap <Leader>nt :NERDTreeToggle<CR>
     let NERDTreeShowHidden=1
+    let NERDTreeIgnore=['\.pyc$', '\.swp$', '\.git$', '__pycache__', '.DS_Store']
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "IndentLine
