@@ -85,6 +85,7 @@ truncation_symbol = "…"
 format = "[ $symbol $branch ](bold fg:fg bg:git_bg)"
 
 [git_status]
+ignore_submodules = true
 conflicted = "[ $count ](fg:conflict_fg bg:git_bg)"
 untracked  = "[ $count ](fg:untracked_fg bg:git_bg)"
 stashed    = "[ $count ](fg:stashed_fg bg:git_bg)"
