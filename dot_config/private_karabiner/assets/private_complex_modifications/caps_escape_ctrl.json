@@ -1,0 +1,26 @@
+{
+  "title": "Caps: tap Esc, hold Ctrl (tmux-friendly)",
+  "rules": [
+    {
+      "description": "Change caps_lock to escape if pressed alone, control if pressed with other keys",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
