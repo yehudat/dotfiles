@@ -13,7 +13,7 @@ palette = "airline"
 #                └─ [  ] or [ 󰝆 ]
 # RIGHT PROMPT: ......[ time ] [ cmd_duration_sec ]
 format = """
-${custom.user}[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$docker_context[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
+${custom.user}[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$container[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
 $character
 """
 
@@ -108,13 +108,12 @@ style = "chick"
 pyenv_version_name = true
 format = "[${symbol}${version}]($style)"
 
-[docker_context]
+[container]
 symbol = "󰡨 "
-only_with_files = false
 format = "[ $symbol $context ](bold fg:stashed_fg bg:blue)"
 
 [hostname]
-ssh_only = true
+ssh_only = false # also inside a container
 format = "[$hostname](bold fg:fg bg:time_bg)"
 disabled = false
 
