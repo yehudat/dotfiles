@@ -11,10 +11,11 @@ export STARSHIP_USER_ALIAS=$([[ "$USER" == "lab-s-yehudat" ]] && echo me || echo
 
 # Common PATH bits (Mac + Linux)
 if [ -d /opt/homebrew/bin ]; then
-  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/home/`whoami`/.config:$PATH"
 elif [ -d /usr/local/bin ]; then
-  export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+  export PATH="/usr/local/bin:/usr/local/sbin:/home/`whoami`/.config:$PATH"
 fi
+
 export HOMEBREW_AUTO_UPDATE_SECS=31600 # 4 times a day
 
 export ICLOUD='/Users/lab-s-yehudat/Library/Mobile Documents/com~apple~CloudDocs'
