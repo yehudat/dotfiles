@@ -135,8 +135,12 @@ config.bind('yt', 'yank title')
 # -----------------------------
 config.bind(':', 'cmd-set-text :')
 config.bind(';', 'cmd-set-text :')   # comment out if you dislike it
-config.bind('<Ctrl-p>', 'completion-item-focus prev', mode='command')
-config.bind('<Ctrl-n>', 'completion-item-focus next', mode='command')
+# Unbind defaults that might conflict
+config.unbind('<Ctrl-j>', mode='command')
+config.unbind('<Ctrl-k>', mode='command')
+
+config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
 
 # -----------------------------
 # Downloads & files
