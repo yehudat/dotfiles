@@ -1,67 +1,52 @@
-# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# XML-based font configuration API for X Windows
 brew "fontconfig"
-# Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
-# Modern, maintained replacement for ls
 brew "eza"
-# Command-line fuzzy finder written in Go
 brew "fzf"
-# GitHub command-line tool
 brew "gh"
-# Render markdown on the CLI
+brew "git-lfs"
 brew "glow"
-# Synchronize a maildir with an IMAP server
 brew "isync", restart_service: :changed
-# Library to render SVG files using Cairo
 brew "librsvg"
-# SMTP client that can be used as an SMTP plugin for Mutt
+brew "mdcat"
 brew "msmtp"
-# NCurses Disk Usage
 brew "ncdu"
-# E-mail reader with support for Notmuch, NNTP and much more
 brew "neomutt"
-# Simple CLI for interacting with Google oauth tokens
 brew "oauth2l"
-# Swiss-army knife of markup format conversion
 brew "pandoc"
-# PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
-# Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Cross-shell prompt for astronauts
 brew "starship"
-# Waveform viewer, supporting VCD, FST, or GHW format
 brew "surfer"
-# High-performance, platform-neutral implementation of VNC
 brew "tiger-vnc"
-# Terminal multiplexer
 brew "tmux"
-# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
-# Tools for the WireGuard secure network tunnel
 brew "wireguard-tools"
-# Shell extension to navigate your filesystem faster
 brew "zoxide"
-# Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
-# OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Terminal-based AI coding assistant
 cask "claude-code"
-# App to build and share containerised applications and microservices
 cask "docker-desktop"
 cask "font-jetbrains-mono-nerd-font"
-# Terminal emulator as alternative to Apple's Terminal app
+cask "github"
 cask "iterm2"
-# Enable generative AI features in iTerm2
 cask "itermai"
-# Note taking and to-do application with synchronisation capabilities
 cask "joplin"
-# Text editor
+cask "karabiner-elements"
 cask "macvim-app"
-# Move and resize windows using keyboard shortcuts or snap areas
+cask "qutebrowser"
 cask "rectangle"
-# Multi-platform VNC client and server
 cask "tigervnc-viewer"
+cask "visual-studio-code"
+vscode "chipsalliance.verible"
+vscode "davidanson.vscode-markdownlint"
+vscode "github.copilot"
+vscode "github.copilot-chat"
+vscode "github.vscode-github-actions"
+vscode "github.vscode-pull-request-github"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-vscode-remote.remote-containers"
+vscode "mshr-h.veriloghdl"
+vscode "vscodevim.vim"
+vscode "yzane.markdown-pdf"
+vscode "yzhang.markdown-all-in-one"
