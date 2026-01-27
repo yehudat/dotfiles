@@ -13,7 +13,7 @@ palette = "airline"
 #                └─ [  ] or [ 󰝆 ]
 # RIGHT PROMPT: ......[ time ] [ cmd_duration_sec ]
 format = """
-${custom.user}[](fg:chick bg:time_bg)$hostname[](bg:blue fg:time_bg)$container[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
+${custom.user}[](fg:chick bg:time_bg)${custom.short_host}[](bg:blue fg:time_bg)$container[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
 $character
 """
 
@@ -113,9 +113,29 @@ symbol = "󰡨 "
 format = "[ $symbol $context ](bold fg:stashed_fg bg:blue)"
 
 [hostname]
-ssh_only = false # also inside a container
-format = "[$hostname](bold fg:fg bg:time_bg)"
-disabled = false
+#ssh_only = false # also inside a container
+#format = "[$hostname](bold fg:fg bg:time_bg)"
+disabled = true
+
+[custom.short_host]
+command = '''
+hn="$(hostname -s)"
+
+# If hostname equals username → show "me"
+if [ "$hn" = 'Lab-S-Yehudats-MacBook-Pro' ]; then
+  echo my-
+  exit 0
+fi
+
+# Trim to max 8 chars, append "..." if needed
+if [ "${#hn}" -gt 8 ]; then
+  echo "${hn:0:8}..."
+else
+  echo "$hn"
+fi
+'''
+when = "true"
+format = "[ $output ](bold fg:fg bg:time_bg)"
 
 # --------------------------------------------------------------
 # Time / duration / status / battery
