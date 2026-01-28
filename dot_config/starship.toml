@@ -65,7 +65,7 @@ disabled = true
 [custom.user]
 command = "echo $STARSHIP_USER_ALIAS"
 when = true
-format = "[](fg:chick)[  $output](bold fg:fg bg:chick)"
+format = "[](fg:chick)[ $output](bold fg:fg bg:chick)"
 
 [directory]
 truncation_length = 3          # ~/proj/ai/…
@@ -109,8 +109,8 @@ pyenv_version_name = true
 format = "[${symbol}${version}]($style)"
 
 [container]
-symbol = "󰡨 "
-format = "[ $symbol $context ](bold fg:stashed_fg bg:blue)"
+symbol = "  "
+format = "[ $symbol ](bold fg:stashed_fg bg:blue)"
 
 [hostname]
 #ssh_only = false # also inside a container
@@ -123,16 +123,15 @@ hn="$(hostname -s)"
 
 # If hostname equals username → show "me"
 if [ "$hn" = 'Lab-S-Yehudats-MacBook-Pro' ]; then
-  echo my-
+  echo 
   exit 0
 fi
 
 # Trim to max 8 chars, append "..." if needed
 if [ "${#hn}" -gt 8 ]; then
-  echo "${hn:0:8}..."
-else
-  echo "$hn"
+  hn="${hn:0:8}..."
 fi
+echo " $hn"
 '''
 when = "true"
 format = "[ $output ](bold fg:fg bg:time_bg)"
