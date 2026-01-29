@@ -6,6 +6,7 @@ brew "fzf"
 brew "gh"
 brew "git-lfs"
 brew "glow"
+brew "htop"
 brew "isync", restart_service: :changed
 brew "librsvg"
 brew "mdcat"
