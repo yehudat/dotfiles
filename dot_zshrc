@@ -106,7 +106,7 @@ alias h=highlight
 alias vpnu='sudo wg-quick up   ai-fabrics-yt'
 alias vpnd='sudo wg-quick down ai-fabrics-yt'
 alias vpns='sudo wg show'
-alias bbdump='brew bundle dump --global --force'
+alias bbdump='brew bundle dump --global --no-vscode --force'
 alias sued='sudo EDITOR=/usr/bin/vi visudo'
 alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfont="JetBrainsMono Nerd Font" --variable monofont="JetBrainsMono Nerd Font Mono" --variable geometry:margin=0.5cm --syntax-highlighting=tango'
 alias nw="networksetup -listallnetworkservices"
