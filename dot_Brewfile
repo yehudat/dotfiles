@@ -10,6 +10,7 @@ brew "htop"
 brew "isync", restart_service: :changed
 brew "librsvg"
 brew "mdcat"
+brew "mosh"
 brew "msmtp"
 brew "ncdu"
 brew "neomutt"
