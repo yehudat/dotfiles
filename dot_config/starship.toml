@@ -109,8 +109,8 @@ pyenv_version_name = true
 format = "[${symbol}${version}]($style)"
 
 [container]
-symbol = "  "
-format = "[ $symbol ](bold fg:stashed_fg bg:blue)"
+symbol = " "
+format = "[ $symbol](bold fg:stashed_fg bg:blue)"
 
 [hostname]
 #ssh_only = false # also inside a container
