@@ -123,7 +123,7 @@ hn="$(hostname -s)"
 
 # If hostname equals username → show "me"
 if [ "$hn" = 'Lab-S-Yehudats-MacBook-Pro' ]; then
-  echo 
+  echo 󰀵
   exit 0
 fi
 
