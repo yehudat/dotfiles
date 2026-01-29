@@ -111,6 +111,7 @@ alias sued='sudo EDITOR=/usr/bin/vi visudo'
 alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfont="JetBrainsMono Nerd Font" --variable monofont="JetBrainsMono Nerd Font Mono" --variable geometry:margin=0.5cm --syntax-highlighting=tango'
 alias nw="networksetup -listallnetworkservices"
 alias speedtest="networkquality -s"
+alias tssh='mosh "$1" -- tmux attach || tmux new'
 
 ##### Local overrides #####
 if [ -f "$HOME/.zshrc.local" ]; then
