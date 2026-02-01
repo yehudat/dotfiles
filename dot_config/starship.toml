@@ -13,7 +13,7 @@ palette = "airline"
 #                └─ [  ] or [ 󰝆 ]
 # RIGHT PROMPT: ......[ time ] [ cmd_duration_sec ]
 format = """
-${custom.user}[](fg:chick bg:time_bg)${custom.short_host}[](bg:blue fg:time_bg)$container[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
+${custom.user}[](fg:time_bg bg:chick)${custom.short_host}[](bg:blue fg:chick)$container[](bg:orange fg:blue)$directory$git_branch$git_status[](fg:git_bg)$fill$time $cmd_duration$status
 $character
 """
 
@@ -30,10 +30,10 @@ user_bg     = "#A7C7E7"   # pastel baby blue
 mustard     = "#E8C875"
 chick       = "#F7F5A0"
 orange      = "#FFA590"
-dir_bg      = "#D6C6E1"   # soft lilac
-git_bg      = "#E0B0DF"
+soft_lilac  = "#D6C6E1"   # soft lilac
+git_bg      = "#CBB3E9"
 docker_bg   = "#F4C2C2"   # baby pink
-time_bg     = "#C8D3CF"   # mint pastel
+time_bg     = "#A8CFAF"   # mint pastel
 dur_bg      = "#FFF2A1"   # pastel sunshine yellow
 
 # Functional
@@ -42,11 +42,10 @@ error_bg    = "#FFB5A7"   # pastel coral (visible but soft)
 warn_bg     = "#FFD1DC"   # pastel blush
 ok_bg       = "#C8F3CF"   # mint green for success
 
-fg          = "#1c1c1c"   # dark text on pastel blocks
+default_fg          = "#1c1c1c"   # dark text on pastel blocks
 dim         = "#444444"   # subtle separators
 
 # git status
-success_fg    = "#00F651"   # emerald green
 conflict_fg   = "#7A0C0C"   # blood red
 untracked_fg  = "#8B0000"   # blood red
 stashed_fg    = "#0A4FFF"   # royal blue
@@ -65,13 +64,13 @@ disabled = true
 [custom.user]
 command = "echo $STARSHIP_USER_ALIAS"
 when = true
-format = "[](fg:chick)[ $output](bold fg:fg bg:chick)"
+format = "[](fg:time_bg)[ $output](bold fg:default_fg bg:time_bg)"
 
 [directory]
 truncation_length = 3          # ~/proj/ai/…
 truncate_to_repo = true        # stop at repo root
 read_only = ""
-format = "[  $path](bold fg:fg bg:orange)[](fg:orange bg:git_bg)"
+format = "[  $path](bold fg:default_fg bg:orange)[](fg:orange bg:git_bg)"
 
 # --------------------------------------------------------------
 # Git
@@ -82,7 +81,7 @@ symbol = "󰊢"
 
 truncation_length = 10
 truncation_symbol = "…"
-format = "[ $symbol $branch ](bold fg:fg bg:git_bg)"
+format = "[ $symbol $branch ](bold fg:default_fg bg:git_bg)"
 
 [git_status]
 ignore_submodules = true
@@ -96,7 +95,7 @@ deleted    = "[ $count ](fg:deleted_fg bg:git_bg)"
 ahead      = " ${count}"
 behind     = " ${count}"
 diverged   = " ${ahead_count}⇣${behind_count}"
-format     = "[$all_status$ahead_behind](bold fg:fg bg:git_bg)"
+format     = "[$all_status$ahead_behind](bold fg:default_fg bg:git_bg)"
 
 # --------------------------------------------------------------
 # Languages / environments
@@ -104,7 +103,7 @@ format     = "[$all_status$ahead_behind](bold fg:fg bg:git_bg)"
 
 [python]
 symbol = ""
-style = "chick"
+style = "time_bg"
 pyenv_version_name = true
 format = "[${symbol}${version}]($style)"
 
@@ -113,8 +112,6 @@ symbol = " "
 format = "[ $symbol](bold fg:stashed_fg bg:blue)"
 
 [hostname]
-#ssh_only = false # also inside a container
-#format = "[$hostname](bold fg:fg bg:time_bg)"
 disabled = true
 
 [custom.short_host]
@@ -134,7 +131,7 @@ fi
 echo " $hn"
 '''
 when = "true"
-format = "[ $output ](bold fg:fg bg:time_bg)"
+format = "[ $output ](bold fg:default_fg bg:chick)"
 
 # --------------------------------------------------------------
 # Time / duration / status / battery
@@ -176,5 +173,5 @@ disabled             = false
 success_symbol       = "[ └─ ](fg:staged_fg)"
 error_symbol         = "[ └─ ](fg:red)"
 vimcmd_symbol        = "[ └─ 󰝆](fg:gainsboro)"
-vimcmd_visual_symbol = "[ └─ ](fg:dir_bg)"
+vimcmd_visual_symbol = "[ └─ ](fg:soft_lilac)"
 
