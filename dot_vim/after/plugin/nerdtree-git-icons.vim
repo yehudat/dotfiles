@@ -11,16 +11,18 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
   \ 'Dirty'     : '',
   \ 'Clean'     : '󰈸',
   \ 'Ignored'   : '',
+  \ 'Unmerged'  : '󰀦',
   \ 'Unknown'   : ''
   \ }
 
 function! s:NerdTreeGitColors() abort
-  highlight! NERDTreeGitStatusModified  ctermfg=1  guifg=#8B0000
-  highlight! NERDTreeGitStatusStaged    ctermfg=2  guifg=#00A651
-  highlight! NERDTreeGitStatusUntracked ctermfg=9  guifg=#8B0000
-  highlight! NERDTreeGitStatusRenamed   ctermfg=3  guifg=#7B3F00
-  highlight! NERDTreeGitStatusDeleted   ctermfg=9  guifg=#E00032
-  highlight! NERDTreeGitStatusDirty     ctermfg=3  guifg=#7B3F00
+  highlight! NERDTreeGitStatusUntracked ctermfg=1 ctermbg=NONE   " red
+  highlight! NERDTreeGitStatusDirty     ctermfg=1 ctermbg=NONE   " red
+  highlight! NERDTreeGitStatusStaged    ctermfg=2 ctermbg=NONE   " green
+  highlight! NERDTreeGitStatusModified  ctermfg=3 ctermbg=NONE   " yellow
+  highlight! NERDTreeGitStatusRenamed   ctermfg=6 ctermbg=NONE   " cyan
+  highlight! NERDTreeGitStatusDeleted   ctermfg=1 ctermbg=NONE   " red  guifg=#7B3F00
+  highlight! NERDTreeGitStatusUnmerged  ctermfg=9 cterm=bold
 endfunction
 
 call s:NerdTreeGitColors()
