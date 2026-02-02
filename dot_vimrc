@@ -130,8 +130,8 @@ call vundle#end()
     " Speed up git diff signs update
     set updatetime=100
     " Navigation and action mappings for GitGutter
-    nmap ]h <Plug>GitGutterNextHunk
-    nmap [h <Plug>GitGutterPrevHunk
+    nmap ]h <Plug>(GitGutterNextHunk)
+    nmap [h <Plug>(GitGutterPrevHunk)
     nmap <Leader>ha <Plug>GitGutterStageHunk
     nmap <Leader>hr <Plug>GitGutterUndoHunk
     nmap <Leader>hv <Plug>GitGutterPreviewHunk
