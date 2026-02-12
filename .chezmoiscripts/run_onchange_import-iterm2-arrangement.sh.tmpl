@@ -39,10 +39,9 @@ if result.returncode != 0:
 
 prefs = plistlib.loads(result.stdout)
 
-# Set the arrangement, remove legacy "split_screen"
+# Set the arrangement
 if "Window Arrangements" not in prefs:
     prefs["Window Arrangements"] = {}
-prefs["Window Arrangements"].pop("split_screen", None)
 prefs["Window Arrangements"][arrangement_name] = arrangement_data
 
 # Set as default startup arrangement
