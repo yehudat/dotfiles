@@ -144,8 +144,7 @@ if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
@@ -166,6 +165,11 @@ tp() {
   local name="${1:-${top:t}}"   # zsh: :t = tail (basename)
   tmux attach -t "$name" 2>/dev/null || tmux new -s "$name"
 }
+
+# Auto-attach tmux on interactive SSH sessions
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && -o interactive ]]; then
+  tp main
+fi
 
 aifdev() {
   if [[ -n "$1" ]]; then
