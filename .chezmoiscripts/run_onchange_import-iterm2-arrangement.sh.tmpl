@@ -1,0 +1,64 @@
+#!/bin/bash
+# Import iTerm2 window arrangement from startup.iterm2arrangement
+# Re-runs when the arrangement file changes:
+# hash: {{ include "startup.iterm2arrangement" | sha256sum }}
+
+set -euo pipefail
+
+ARRANGEMENT_FILE="$HOME/startup.iterm2arrangement"
+ARRANGEMENT_NAME="startup"
+PLIST_DOMAIN="com.googlecode.iterm2"
+
+if [ ! -f "$ARRANGEMENT_FILE" ]; then
+    echo "Arrangement file not found: $ARRANGEMENT_FILE"
+    exit 1
+fi
+
+echo "Importing iTerm2 arrangement from $ARRANGEMENT_FILE..."
+
+python3 << 'PYEOF'
+import plistlib
+import subprocess
+import sys
+
+arrangement_file = "$HOME/startup.iterm2arrangement".replace("$HOME", __import__("os").path.expanduser("~"))
+arrangement_name = "startup"
+
+# Read the arrangement file
+with open(arrangement_file, "rb") as f:
+    arrangement_data = plistlib.load(f)
+
+# Export current iTerm2 prefs
+result = subprocess.run(
+    ["defaults", "export", "com.googlecode.iterm2", "-"],
+    capture_output=True
+)
+if result.returncode != 0:
+    print("Failed to export iTerm2 preferences", file=sys.stderr)
+    sys.exit(1)
+
+prefs = plistlib.loads(result.stdout)
+
+# Set the arrangement, remove legacy "split_screen"
+if "Window Arrangements" not in prefs:
+    prefs["Window Arrangements"] = {}
+prefs["Window Arrangements"].pop("split_screen", None)
+prefs["Window Arrangements"][arrangement_name] = arrangement_data
+
+# Set as default startup arrangement
+prefs["Default Arrangement Name"] = arrangement_name
+prefs["OpenArrangementAtStartup"] = True
+
+# Import back
+serialized = plistlib.dumps(prefs)
+proc = subprocess.run(
+    ["defaults", "import", "com.googlecode.iterm2", "-"],
+    input=serialized
+)
+if proc.returncode != 0:
+    print("Failed to import iTerm2 preferences", file=sys.stderr)
+    sys.exit(1)
+
+print(f"Successfully imported arrangement '{arrangement_name}' into iTerm2")
+print(f"Set as default startup arrangement")
+PYEOF
