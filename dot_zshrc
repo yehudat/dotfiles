@@ -161,6 +161,17 @@ _clear_before_exec() {
 add-zsh-hook preexec _clear_before_exec
 
 tp() {
-  local name="${1:-$(basename $(git rev-parse --show-toplevel 2>/dev/null || pwd))}"
+  local top
+  top="$(git rev-parse --show-toplevel 2>/dev/null)" || top="$PWD"
+  local name="${1:-${top:t}}"   # zsh: :t = tail (basename)
   tmux attach -t "$name" 2>/dev/null || tmux new -s "$name"
 }
+
+aifdev() {
+  if [[ -n "$1" ]]; then
+    ssh -t aifdev "source ~/.bashrc && set_proj $1; bash -l"
+  else
+    ssh aifdev
+  fi
+}
+
