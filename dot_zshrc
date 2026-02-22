@@ -44,7 +44,10 @@ fi
 
 [[ -f ~/.zsh_functions.common ]] && source ~/.zsh_functions.common
 
-[[ -f ~/.zsh_functions.macos ]] && source ~/.zsh_functions.macos
+case "$(uname -s)" in
+  Linux)  [[ -f ~/.zsh_functions.linux_vm ]] && source ~/.zsh_functions.linux_vm ;;
+  Darwin) [[ -f ~/.zsh_functions.macos ]]    && source ~/.zsh_functions.macos    ;;
+esac
 
 autoload -Uz compinit && compinit
 

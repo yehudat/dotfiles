@@ -1,0 +1,68 @@
+# Linux VM DV workflow — functions and aliases
+
+command -v srun >/dev/null || return 0
+
+##### PATH & exports #####
+
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+  PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+export NOVAS_RC=~/.verdi/novas.rc
+
+##### DV aliases #####
+
+alias work='cd /proj/a1/dv/yehudat'
+alias aif_setup='source /tools/flow/aif/A1/25q1a/bin/aif_setup'
+alias sgui='srun --x11 --time=5:00:00 -p high --mem=30G --pty /bin/zsh -s'
+alias sbatch='srun --time=5:00:00 -p high --mem=30G --pty /bin/zsh -s'
+alias svcsgui='vcs -l compile.log -full64 -sverilog -debug_acc+all -timescale=1ns/1ps -kdb -lca -f verif/unit/files.txt verif/unit/bhv_xbar_tb.sv -o simv; ./simv -verdi'
+alias svcsc='vcs -l compile.log -full64 -sverilog -debug_acc+all -timescale=1ns/1ps -kdb -lca -f verif/unit/files.txt verif/unit/bhv_xbar_tb.sv -o simv'
+alias svcsr='./simv && fsdb2fst'
+
+##### DV functions #####
+
+set_proj() {
+  local dir="$1"
+  local gui="$2"
+
+  cd "$MYWORKSPACE/$dir" || return 1
+  source "$AIF_SETUP"
+
+  if [[ "$gui" == "gui" ]]; then
+    sgui
+  else
+    sbatch
+  fi
+}
+
+vcs_compile() {
+  local ffile="$1"
+  local top="$2"
+
+  set -x
+  srun --time=1:00:00 -p high --mem=8G --pty /bin/bash -c "\
+    vcs -l compile.log -full64 \
+    -sverilog -debug_access+all \
+    -timescale=1ns/1ps -kdb -lca \
+    -f \"$ffile\" \"$top\" \
+    -o simv"
+  set +x
+}
+
+vcs_run() {
+  local mode="$1"
+  local gui_flags=""
+  local srun_flags=""
+
+  set -x
+  if [[ "$mode" == "gui" ]]; then
+    gui_flags=\"-gui -ucli -do 'ignore finish'\"
+    srun_flags="--x11"
+  fi
+
+  srun ${srun_flags} --time=1:00:00 -p high --mem=30G --pty \
+    /bin/bash -c "./simv ${gui_flags}"
+  set +x
+}
