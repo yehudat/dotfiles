@@ -33,15 +33,9 @@ setopt EXTENDED_GLOB
 setopt NO_BEEP
 setopt PROMPT_SUBST
 
-bindkey -v   # vim-style keys
+bindkey -v   # vim-style keys  
 
-##### Completions & plugins #####
-
-# --- Zsh completions (incl. custom ones like glow) ---
-if [[ -d ~/.zsh/completions ]]; then
-  fpath=(~/.zsh/completions $fpath)
-fi
-
+[[ -d ~/.zsh/completions ]] && fpath=(~/.zsh/completions $fpath)
 [[ -f ~/.zsh_functions.common ]] && source ~/.zsh_functions.common
 
 case "$(uname -s)" in
@@ -51,7 +45,6 @@ esac
 
 autoload -Uz compinit && compinit
 
-# --- zsh-syntax-highlighting ---
 for _zshl in \
   "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
@@ -59,11 +52,6 @@ for _zshl in \
 done
 unset _zshl
 
-if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init zsh)"
-fi
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 
-##### Local overrides #####
-if [ -f "$HOME/.zshrc.local" ]; then
-  source "$HOME/.zshrc.local"
-fi
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
