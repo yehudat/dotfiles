@@ -40,8 +40,17 @@ unset _zas
 ##### NVM #####
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Lazy-load NVM (shaves ~5 s off shell startup)
+_nvm_lazy_load() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+for _cmd in nvm node npm npx; do
+  eval "${_cmd}() { _nvm_lazy_load; ${_cmd} \"\$@\"; }"
+done
+unset _cmd
 
 ##### macOS aliases #####
 
