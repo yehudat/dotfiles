@@ -16,9 +16,6 @@ elif [ -d /usr/local/bin ]; then
   export PATH="/usr/local/bin:/usr/local/sbin:/home/`whoami`/.config:$PATH"
 fi
 
-export HOMEBREW_AUTO_UPDATE_SECS=31600 # 4 times a day
-
-export ICLOUD='/Users/lab-s-yehudat/Library/Mobile Documents/com~apple~CloudDocs'
 ##### History & options #####
 
 HISTSIZE=50000
@@ -90,106 +87,37 @@ highlight() {
     -e "s/\bINFO\b/${H_CYAN}&${H_RESET}/Ig"
 }
 
-autoload -Uz compinit
-compinit
-
-##### Aliases (from your bashrc, kept) #####
+##### Aliases #####
 alias ls="eza --oneline --reverse --sort=size --group-directories-first --icons --color=auto"
 alias ll="ls -ll"
 alias l="less"
 alias grep="grep --colour"
-alias openmd="retext"
-alias cclip='tr -d "\n" | pbclip -selection clipboard'
-alias pclip='pbpaste -selection clipboard -o'
-alias docker_ps="docker ps -a --format '{{.ID}} | {{.Image}} | {{.Status}}' | awk '{ printf \"%20s %20s %20s %10s\\n\", \$1, \$2, \$3, \$4 }'"
 alias h=highlight
-alias vpnu='sudo wg-quick up   ai-fabrics-yt'
-alias vpnd='sudo wg-quick down ai-fabrics-yt'
-alias vpns='sudo wg show'
-alias bbdump='brew bundle dump --global --no-vscode --force'
-alias sued='sudo EDITOR=/usr/bin/vi visudo'
-alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfont="JetBrainsMono Nerd Font" --variable monofont="JetBrainsMono Nerd Font Mono" --variable geometry:margin=0.5cm --syntax-highlighting=tango'
-alias nw="networksetup -listallnetworkservices"
-alias speedtest="networkquality -s"
-alias tssh='mosh "$1" -- tmux attach || tmux new'
-alias glow='glow --config ~/.glow.yml'
 
-##### Local overrides #####
-if [ -f "$HOME/.zshrc.local" ]; then
-  source "$HOME/.zshrc.local"
-fi
-
-# --------------------------------------------------------------
-# Plugins: fzf, autosuggestions, syntax-highlighting #####
-# --------------------------------------------------------------
+##### Completions & plugins #####
 
 # --- Zsh completions (incl. custom ones like glow) ---
 if [[ -d ~/.zsh/completions ]]; then
   fpath=(~/.zsh/completions $fpath)
 fi
-# Homebrew (Apple Silicon) completions
-if [[ -d /opt/homebrew/completions/zsh ]]; then
-  fpath=(/opt/homebrew/completions/zsh $fpath)
-fi
-if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
-  fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
-fi
-autoload -Uz compinit
-compinit
 
-# --- fzf integration (Homebrew) ---
-if [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]; then
-  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-fi
-if [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]; then
-  source /opt/homebrew/opt/fzf/shell/completion.zsh
-fi
+[[ -f ~/.zsh_functions.macos ]] && source ~/.zsh_functions.macos
 
-# --- zsh-autosuggestions ---
-if command -v brew >/dev/null 2>&1; then
-  ZAS="$(brew --prefix zsh-autosuggestions 2>/dev/null)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  [[ -f "$ZAS" ]] && source "$ZAS"
-fi
+autoload -Uz compinit && compinit
 
-# --- zsh-syntax-highlighting (last) ---
-if command -v brew >/dev/null 2>&1; then
-  ZSHL="$(brew --prefix zsh-syntax-highlighting 2>/dev/null)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-  [[ -f "$ZSHL" ]] && source "$ZSHL"
-fi
+# --- zsh-syntax-highlighting ---
+for _zshl in \
+  "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+  [[ -f "$_zshl" ]] && { source "$_zshl"; break; }
+done
+unset _zshl
 
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/lab-s-yehudat/.docker/completions $fpath)
-# End of Docker CLI completions
-
-autoload -Uz add-zsh-hook
-
-_clear_before_exec() {
-  # Clear screen (works in your terminal, you already confirmed this escape works)
-  print -n $'\e[2J\e[H'
-}
-add-zsh-hook preexec _clear_before_exec
-
-tp() {
-  local top
-  top="$(git rev-parse --show-toplevel 2>/dev/null)" || top="$PWD"
-  local name="${1:-${top:t}}"   # zsh: :t = tail (basename)
-  tmux attach -t "$name" 2>/dev/null || tmux new -s "$name"
-}
-
-aifdev() {
-  if [[ -n "$1" ]]; then
-    ssh -t aifdev "source ~/.bashrc && set_proj $1; bash -l"
-  else
-    ssh aifdev
-  fi
-}
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+##### Local overrides #####
+if [ -f "$HOME/.zshrc.local" ]; then
+  source "$HOME/.zshrc.local"
+fi
