@@ -112,6 +112,7 @@ alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfon
 alias nw="networksetup -listallnetworkservices"
 alias speedtest="networkquality -s"
 alias tssh='mosh "$1" -- tmux attach || tmux new'
+alias glow='glow --config ~/.glow.yml'
 
 ##### Local overrides #####
 if [ -f "$HOME/.zshrc.local" ]; then
@@ -122,7 +123,21 @@ fi
 # Plugins: fzf, autosuggestions, syntax-highlighting #####
 # --------------------------------------------------------------
 
-# --- fzf integration (if installed via Homebrew) ---
+# --- Zsh completions (incl. custom ones like glow) ---
+if [[ -d ~/.zsh/completions ]]; then
+  fpath=(~/.zsh/completions $fpath)
+fi
+# Homebrew (Apple Silicon) completions
+if [[ -d /opt/homebrew/completions/zsh ]]; then
+  fpath=(/opt/homebrew/completions/zsh $fpath)
+fi
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
+  fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+fi
+autoload -Uz compinit
+compinit
+
+# --- fzf integration (Homebrew) ---
 if [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]; then
   source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 fi
@@ -131,13 +146,15 @@ if [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]; then
 fi
 
 # --- zsh-autosuggestions ---
-if [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if command -v brew >/dev/null 2>&1; then
+  ZAS="$(brew --prefix zsh-autosuggestions 2>/dev/null)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  [[ -f "$ZAS" ]] && source "$ZAS"
 fi
 
-# --- zsh-syntax-highlighting (MUST be last) ---
-if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# --- zsh-syntax-highlighting (last) ---
+if command -v brew >/dev/null 2>&1; then
+  ZSHL="$(brew --prefix zsh-syntax-highlighting 2>/dev/null)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  [[ -f "$ZSHL" ]] && source "$ZSHL"
 fi
 
 if command -v starship >/dev/null 2>&1; then
@@ -176,4 +193,3 @@ aifdev() {
 }
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
