@@ -23,12 +23,9 @@ fi
 ##### Plugins #####
 
 # --- fzf integration (Homebrew) ---
-if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
-  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-fi
-if [[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]]; then
-  source /opt/homebrew/opt/fzf/shell/completion.zsh
-fi
+# 2>/dev/null: fzf 0.67 tries to restore the read-only 'zle' option
+[[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh 2>/dev/null
+[[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]]   && source /opt/homebrew/opt/fzf/shell/completion.zsh 2>/dev/null
 
 # --- zsh-autosuggestions ---
 for _zas in \
