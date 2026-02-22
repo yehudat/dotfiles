@@ -35,71 +35,14 @@ setopt PROMPT_SUBST
 
 bindkey -v   # vim-style keys
 
-##### Git helpers for prompt #####
-
-git_stash_count() {
-  if git rev-parse --is-inside-work-tree &>/dev/null; then
-    local count
-    count=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
-    if (( count > 0 )); then
-      printf '[%d]' "$count"
-    fi
-  fi
-}
-
-##### Colour variables for highlighting #####
-
-H_RED=$'%F{red}'
-H_YELLOW=$'%F{yellow}'
-H_GREEN=$'%F{green}'
-H_CYAN=$'%F{cyan}'
-H_BLUE=$'%F{blue}'
-H_MAGENTA=$'%F{magenta}'
-H_RESET=$'%f'
-
-##### Highlight function #####
-# Generic log/DV output highlighter
-
-highlight() {
-  "$@" 2>&1 | sed \
-    -e "s/\buvm_warning\b/${H_YELLOW}&${H_RESET}/Ig" \
-    -e "s/\buvm_error\b/${H_RED}&${H_RESET}/Ig" \
-    -e "s/\buvm_fatal\b/${H_RED}&${H_RESET}/Ig" \
-    -e "s/\buvm_info\b/${H_CYAN}&${H_RESET}/Ig" \
-    \
-    -e "s/\bassert\(ion\)\?\b/${H_RED}&${H_RESET}/Ig" \
-    -e "s/\btimeout\b/${H_RED}&${H_RESET}/Ig" \
-    -e "s/\bfail\(ed\)\?\b/${H_RED}&${H_RESET}/Ig" \
-    -e "s/\bfatal\b/${H_RED}&${H_RESET}/Ig" \
-    -e "s/\berror:\?/ ${H_RED}&${H_RESET}/Ig" \
-    \
-    -e "s/\bwarning:\?/ ${H_YELLOW}&${H_RESET}/Ig" \
-    -e "s/warnings:\s*[1-9][0-9]*/${H_YELLOW}&${H_RESET}/Ig" \
-    \
-    -e "s/errors:\s*[1-9][0-9]*/${H_RED}&${H_RESET}/Ig" \
-    -e "s/errors:\s*0\b/${H_GREEN}&${H_RESET}/Ig" \
-    -e "s/warnings:\s*0\b/${H_GREEN}&${H_RESET}/Ig" \
-    \
-    -e "s/\bpassed\b/${H_GREEN}&${H_RESET}/Ig" \
-    -e "s/\bsuccess\b/${H_GREEN}&${H_RESET}/Ig" \
-    \
-    -e "s/\bcoverage\b/${H_CYAN}&${H_RESET}/Ig" \
-    -e "s/\bINFO\b/${H_CYAN}&${H_RESET}/Ig"
-}
-
-##### Aliases #####
-alias ls="eza --oneline --reverse --sort=size --group-directories-first --icons --color=auto"
-alias ll="ls -ll"
-alias l="less"
-alias grep="grep --colour"
-alias h=highlight
-
 ##### Completions & plugins #####
 
 # --- Zsh completions (incl. custom ones like glow) ---
 if [[ -d ~/.zsh/completions ]]; then
   fpath=(~/.zsh/completions $fpath)
 fi
+
+[[ -f ~/.zsh_functions.common ]] && source ~/.zsh_functions.common
 
 [[ -f ~/.zsh_functions.macos ]] && source ~/.zsh_functions.macos
 
