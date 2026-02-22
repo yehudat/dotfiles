@@ -37,6 +37,11 @@
 # Backup files
 .claude.json.backup
 
+# Retired bash config (now zsh-only)
+.bash_functions
+.bashrc
+.inputrc
+
 # Tmux plugins (managed by tpm)
 .tmux/plugins/
 Library/Application Support/Claude/

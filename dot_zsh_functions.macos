@@ -1,0 +1,123 @@
+# macOS functions, aliases, and plugin loading
+
+##### Homebrew env #####
+
+export HOMEBREW_AUTO_UPDATE_SECS=31600
+export ICLOUD='/Users/lab-s-yehudat/Library/Mobile Documents/com~apple~CloudDocs'
+
+##### Completions fpath (before compinit in .zshrc) #####
+
+# Homebrew (Apple Silicon) completions
+if [[ -d /opt/homebrew/completions/zsh ]]; then
+  fpath=(/opt/homebrew/completions/zsh $fpath)
+fi
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
+  fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+fi
+
+# Docker CLI completions
+if [[ -d ~/.docker/completions ]]; then
+  fpath=(~/.docker/completions $fpath)
+fi
+
+##### Plugins #####
+
+# --- fzf integration (Homebrew) ---
+if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
+  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+fi
+if [[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]]; then
+  source /opt/homebrew/opt/fzf/shell/completion.zsh
+fi
+
+# --- zsh-autosuggestions ---
+for _zas in \
+  "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"; do
+  [[ -f "$_zas" ]] && { source "$_zas"; break; }
+done
+unset _zas
+
+##### NVM #####
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+##### macOS aliases #####
+
+alias openmd="retext"
+alias cclip='tr -d "\n" | pbclip -selection clipboard'
+alias pclip='pbpaste -selection clipboard -o'
+alias docker_ps="docker ps -a --format '{{.ID}} | {{.Image}} | {{.Status}}' | awk '{ printf \"%20s %20s %20s %10s\\n\", \$1, \$2, \$3, \$4 }'"
+alias vpnu='sudo wg-quick up   ai-fabrics-yt'
+alias vpnd='sudo wg-quick down ai-fabrics-yt'
+alias vpns='sudo wg show'
+alias bbdump='brew bundle dump --global --no-vscode --force'
+alias sued='sudo EDITOR=/usr/bin/vi visudo'
+alias pandoc='pandoc --from=gfm --to=pdf --pdf-engine=xelatex --variable mainfont="JetBrainsMono Nerd Font" --variable monofont="JetBrainsMono Nerd Font Mono" --variable geometry:margin=0.5cm --syntax-highlighting=tango'
+alias nw="networksetup -listallnetworkservices"
+alias speedtest="networkquality -s"
+alias tssh='mosh "$1" -- tmux attach || tmux new'
+alias glow='glow --config ~/.glow.yml'
+
+##### Preexec: clear screen #####
+
+autoload -Uz add-zsh-hook
+
+_clear_before_exec() {
+  print -n $'\e[2J\e[H'
+}
+add-zsh-hook preexec _clear_before_exec
+
+##### Functions #####
+
+tp() {
+  local top
+  top="$(git rev-parse --show-toplevel 2>/dev/null)" || top="$PWD"
+  local name="${1:-${top:t}}"
+  tmux attach -t "$name" 2>/dev/null || tmux new -s "$name"
+}
+
+aifdev() {
+  local vmsession="air-linux"
+  local host="aifdev"
+  local proj="$1"
+
+  # Local safeguard: only allow running this function from macOS (Darwin)
+  if [[ "$(uname -s)" != "Darwin" ]]; then
+    print -u2 "aifdev: refusing to run on non-macOS host (uname=$(uname -s))."
+    return 2
+  fi
+
+  # Remote logic: must be Linux, otherwise abort before touching tmux
+  if [[ -n "$proj" ]]; then
+    mosh "$host" -- zsh -lc "
+      if [[ \"\$(uname -s)\" != Linux ]]; then
+        print -u2 'aifdev: remote is not Linux; aborting.'
+        exit 3
+      fi
+
+      if tmux has-session -t '$vmsession' 2>/dev/null; then
+        exec tmux attach -t '$vmsession'
+      else
+        tmux new-session -d -s '$vmsession' zsh -l
+        tmux send-keys -t '$vmsession' \"set_proj \\\"$proj\\\"\" C-m
+        exec tmux attach -t '$vmsession'
+      fi
+    "
+  else
+    mosh "$host" -- zsh -lc "
+      if [[ \"\$(uname -s)\" != Linux ]]; then
+        print -u2 'aifdev: remote is not Linux; aborting.'
+        exit 3
+      fi
+
+      tmux has-session -t '$vmsession' 2>/dev/null && exec tmux attach -t '$vmsession'
+      exec tmux new-session -s '$vmsession' zsh -l
+    "
+  fi
+}
+
+##### iTerm2 integration #####
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
