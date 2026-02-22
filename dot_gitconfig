@@ -21,7 +21,7 @@
     submoduleSummary = true
 [diff]
     submodule = log
-    tool = gvimdiff
+    tool = vimdiff
 [alias]
 	su = submodule update --init --recursive
     br = branch
